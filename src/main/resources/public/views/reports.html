@@ -1,0 +1,15 @@
+<div class="container pad-top">
+  <table class="table reportTable">
+      <tr>
+          <td><h3>All Reports</h3></td>
+          <td></td>
+      </tr>
+      <tr ng-repeat="report in reports">
+          <td>{{report.reportName}}</td>
+          <td>{{report.reportId}}</td>
+          <td>
+              <a class="btn btn-primary" ui-sref="viewReport({id:report.id})">View</a>
+          </td>
+      </tr>
+  </table>
+</div>
