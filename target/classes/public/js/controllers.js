@@ -9,8 +9,8 @@ angular.module('app.controllers', []).controller('ShipwreckListController', func
       });
     }
   };
-}).controller('ShipwreckViewController', function($scope, $stateParams, Shipwreck) {
-  $scope.shipwreck = Shipwreck.get({ id: $stateParams.id }); //Get a single shipwreck.Issues a GET to /api/v1/shipwrecks/:id
+}).controller('ReportViewController', function($scope, $stateParams, Report) {
+  $scope.shipwreck = Report.get({ id: $stateParams.id }); //Get a single report.Issues a GET to /api/v1/shipwrecks/:id
 }).controller('ShipwreckCreateController', function($scope, $state, $stateParams, Shipwreck) {
   $scope.shipwreck = new Shipwreck();  //create new shipwreck instance. Properties will be set via ng-model on UI
 
@@ -37,7 +37,7 @@ angular.module('app.controllers', []).controller('ShipwreckListController', func
         var x = document.getElementById("option");
         var choice = x.options[x.selectedIndex].text;
         if (choice == "No Action") {
-            $state.go('NoAction');
+            $state.go('newNoAction');
         } else if (choice == "investigation") {
 
         } else if (choice == "intervention") {
