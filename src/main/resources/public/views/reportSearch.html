@@ -9,41 +9,41 @@
     <div class="reportId">
         <label><b>Report Id:</b></label>
         <br>
-        <input type="text" name="reportId" onkeypress="enterPressed(event)">
+        <input type="text" name="reportId"  ng-click="enterPressed(event)">
     </div>
     <br>
 
     <div class="reportDate">
         <label><b>Report Date:</b></label>
         <br>
-        <input type="text" name="reportDate" onkeypress="enterPressed(event)">
+        <input type="text" name="reportDate"  ng-click="enterPressed(event)">
     </div>
     <br>
 
     <div class="officerId">
         <label><b>Officer ID:</b></label>
         <br>
-        <input type="text" name="officerId" onkeypress="enterPressed(event)">
+        <input type="text" name="officerId"  ng-click="enterPressed(event)">
     </div>
     <br>
 
     <div class="reportName">
         <label><b>Report Name:</b></label>
         <br>
-        <input type="text" name="reportName" onkeypress="enterPressed(event)">
+        <input type="text" name="reportName" ng-click="enterPressed(event)">
     </div>
     <br>
 </form>
+<p><a class="btn btn-default" role="button" ng-click="searchReport()">Search</a><p>
 
-<input id="submit" type="button" onclick="" value="Search">
-
-<script>
-    function enterPressed(e) {
-        if (e.which == 13 || e.keyCode == 13) {
-            // TODO Return data values
-        }
-    }
-</script>
+<!--<script>-->
+    <!--function enterPressed(e) {-->
+        <!--if (e.which == 13 || e.keyCode == 13) {-->
+            <!--// TODO Return data values-->
+            <!--window.location.href = 'reports.html';-->
+        <!--}-->
+    <!--}-->
+<!--</script>-->
 
 </body>
 </html>

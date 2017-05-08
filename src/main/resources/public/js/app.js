@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('app', ['ui.router', 'navController', 'ngAnimate', 'ui.bootstrap', 'ngResource', 'app.controllers', 'app.services'])
+    var app = angular.module('app', ['ui.router', 'ngAnimate', 'ui.bootstrap', 'ngResource', 'app.controllers', 'app.services'])
 
     // define for requirejs loaded modules
     define('app', [], function () {
@@ -47,38 +47,34 @@
                     pageTitle: 'Home'
                 }
             })
-            .state('shipwrecks', {
-                url: '/shipwrecks',
-                templateUrl: viewsPrefix + 'shipwrecks.html',
-                controller: 'ShipwreckListController'
-            }).state('viewReport', {
-            url: '/reports/:id/view',
-            templateUrl: viewsPrefix + 'shipwreck-view.html',
-            controller: 'ReportViewController'
-        }).state('newNoAction', {
-            url: '/no-action/new',
-            templateUrl: viewsPrefix + 'no-action.html',
-            controller: 'ChooseReportTypeController'
-        }).state('editShipwreck', {
-            url: '/shipwrecks/:id/edit',
-            templateUrl: viewsPrefix + 'shipwreck-edit.html',
-            controller: 'ShipwreckEditController'
-        }).state('login', {
-            url: '/login',
-            templateUrl: viewsPrefix + 'login.html',
-            // controller:'ShipwreckEditController'
-        }).state('reportSearch', {
-            url: '/reportSearch',
-            templateUrl: viewsPrefix + 'reportSearch.html',
-            // controller:'ShipwreckEditController'
-        }).state('chooseReportType', {
+            .state('reportSearch', {
+                url: '/reportSearch',
+                templateUrl: viewsPrefix + 'reportSearch.html',
+                controller:'ReportSearchController'
+            }).state('chooseReportType', {
             url: '/chooseReportType',
             templateUrl: viewsPrefix + 'chooseReportType.html',
             controller: 'ChooseReportTypeController'
-        }).state('selectReport', {
+        }).state('reports', {
             url: '/select-report',
-            templateUrl: viewsPrefix + 'selectReport.html',
-            // controller:'ShipwreckEditController'
+            templateUrl: viewsPrefix + 'reports.html',
+            controller:'ReportSearchController'
+        }).state('viewReport', {
+            url: '/reports/:id/view',
+            templateUrl: viewsPrefix + 'report-view.html',
+            controller: 'ReportViewController'
+        }).state('newReport', {
+            url: '/reports/:reportType/new',
+            templateUrl: viewsPrefix + 'report-add.html',
+            controller: 'ChooseReportTypeController'
+        }).state('editReport', {
+            url: '/reports/:id/edit',
+            templateUrl: viewsPrefix + 'report-edit.html',
+            controller: 'ReportEditController'
+        }).state('login', {
+            url: '/login',
+            templateUrl: viewsPrefix + 'login.html',
+            controller:'LoginController'
         })
     })
         .directive('updateTitle', ['$rootScope', '$timeout',
