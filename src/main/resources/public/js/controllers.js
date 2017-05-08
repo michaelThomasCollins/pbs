@@ -1,40 +1,48 @@
-angular.module('app.controllers', []).controller('ReportDeleteController', function($scope, $state, popupService, $window, Report) {
-  $scope.deleteReport = function(report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
-    if (popupService.showPopup('Really delete this?')) {
-      report.$delete(function() {
-        $state.go('home');
-      });
-    }
-  };
-}).controller('ReportViewController', function($scope, $stateParams, Report) {
-  $scope.report = Report.get({ id: $stateParams.id }); //Get a single report.Issues a GET to /api/v1/reports/:id
-}).controller('LoginController', function($scope, Report) {
+angular.module('app.controllers', []).controller('ReportDeleteController', function ($scope, $state, popupService, $window, Report) {
+    $scope.deleteReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
+        if (popupService.showPopup('Really delete this?')) {
+            report.$delete(function () {
+                $state.go('home');
+            });
+        }
+    };
+
+    // $scope.verifyReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
+    //     if (popupService.showPopup('Are you sure?')) {
+    //         report.$update(function () {
+    //             $state.go('home');
+    //         });
+    //     }
+    // };
+}).controller('ReportViewController', function ($scope, $stateParams, Report) {
+    $scope.report = Report.get({id: $stateParams.id}); //Get a single report.Issues a GET to /api/v1/reports/:id
+}).controller('LoginController', function ($scope, Report) {
     //TODO Write a method to verify users credentials
     $scope.verifyCredentials = function () {
 
         alert(Report.toString());
     };
-}).controller('ReportCreateController', function($scope, $state, $stateParams, Report) {
-  $scope.report = new Report();  //create new report instance. Properties will be set via ng-model on UI
+}).controller('ReportCreateController', function ($scope, $state, $stateParams, Report) {
+    $scope.report = new Report();  //create new report instance. Properties will be set via ng-model on UI
 
-  $scope.addReport = function() { //create a new report. Issues a POST to /api/v1/reports
-    $scope.report.$save(function() {
-      $state.go('home'); // on success go back to the home page
-    });
-  };
-}).controller('ReportEditController', function($scope, $state, $stateParams, Report) {
-  $scope.updateReport = function() { //Update the edited report. Issues a PUT to /api/v1/reports/:id
-    $scope.report.$update(function() {
-      $state.go('home'); // on success go back to home state.
-    });
-  };
+    $scope.addReport = function () { //create a new report. Issues a POST to /api/v1/reports
+        $scope.report.$save(function () {
+            $state.go('home'); // on success go back to the home page
+        });
+    };
+}).controller('ReportEditController', function ($scope, $state, $stateParams, Report) {
+    $scope.updateReport = function () { //Update the edited report. Issues a PUT to /api/v1/reports/:id
+        $scope.report.$update(function () {
+            $state.go('home'); // on success go back to home state.
+        });
+    };
 
-  $scope.loadReport = function() { //Issues a GET request to /api/v1/reports/:id to get a report to update
-    $scope.report = Report.get({ id: $stateParams.id });
-  };
+    $scope.loadReport = function () { //Issues a GET request to /api/v1/reports/:id to get a report to update
+        $scope.report = Report.get({id: $stateParams.id});
+    };
 
-  $scope.loadReport(); // Load a report which can be edited on UI
-}).controller('ChooseReportTypeController', function($scope, $state, $stateParams, reportTypeService) {
+    $scope.loadReport(); // Load a report which can be edited on UI
+}).controller('ChooseReportTypeController', function ($scope, $state, $stateParams, reportTypeService) {
     $scope.reportType = 'views/_no_action_form.html';
 
     $scope.chooseReport = function () {
@@ -60,7 +68,7 @@ angular.module('app.controllers', []).controller('ReportDeleteController', funct
         return reportTypeService.getReportType();
     };
 
-}).controller('ReportSearchController', function($scope, $state,$stateParams) {
+}).controller('ReportSearchController', function ($scope, $state, $stateParams, Report) {
     //TODO Write a method to verify users credentials
     $scope.enterPressed = function (e) {
         if (e.which == 13 || e.keyCode == 13) {
@@ -68,9 +76,9 @@ angular.module('app.controllers', []).controller('ReportDeleteController', funct
         }
     };
 
-    $scope.searchReport = function(){
-// TODO Return data values
-        //   $scope.shipwrecks = Shipwreck.query(); //fetch all shipwrecks. Issues a GET to /api/vi/shipwrecks
+    $scope.searchReport = function () {
+// TODO Return specific data values
+        $scope.reports = Report.query(); //fetch all reports. Issues a GET to /api/vi/reports
         $state.go('reports');
     };
 });
