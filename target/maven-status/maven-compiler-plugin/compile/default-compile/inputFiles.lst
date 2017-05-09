@@ -1,3 +1,5 @@
 C:\Users\Michael\IdeaProjects\policebookingsystem\src\main\java\com\pbs\App.java
 C:\Users\Michael\IdeaProjects\policebookingsystem\src\main\java\com\pbs\controller\HomeController.java
-C:\Users\Michael\IdeaProjects\policebookingsystem\src\main\java\com\pbs\controller\PBSController.java
+C:\Users\Michael\IdeaProjects\policebookingsystem\src\main\java\com\pbs\model\Report.java
+C:\Users\Michael\IdeaProjects\policebookingsystem\src\main\java\com\pbs\controller\ReportController.java
+C:\Users\Michael\IdeaProjects\policebookingsystem\src\main\java\com\pbs\controller\ReportStub.java

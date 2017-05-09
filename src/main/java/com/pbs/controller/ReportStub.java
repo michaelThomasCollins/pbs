@@ -2,6 +2,7 @@ package com.pbs.controller;
 
 import java.util.*;
 
+import com.pbs.model.NoAction;
 import com.pbs.model.Report;
 
 public class ReportStub {
@@ -12,11 +13,11 @@ public class ReportStub {
 	static {
 //			public Report(Integer id, String reportName, Date reportDate, String suspectedCrimes, Integer officerId, String persons, String officers, String statement, String details) {
 
-		Report a = new Report(1, "First Report", new Date(), "arse-on", 200, "Frank Duffy", "Oof", "It Wasn't me", "It was him");
+		NoAction a = new NoAction(1, "First Report", new Date(), 200,"arse-on",  "Frank Duffy", "Oof", "It Wasn't me", "It was him");
 		reports.put(1, a);
-		Report b = new Report(2, "Second Report", new Date(), "murder", 80, "Michael Collins", "Thud", "I'll Kill Again","He's got a knife!");
+		NoAction b = new NoAction(2, "Second Report", new Date(),80,  "murder", "Michael Collins", "Thud", "I'll Kill Again","He's got a knife!");
 		reports.put(2, b);
-		Report c = new Report(3, "Third Report", new Date(), "robbery", 50, "James Johnson", "Tiny", "I would've gotten away with it if it wasn't for you pesky kids!", "No scooby snacks");
+		NoAction c = new NoAction(3, "Third Report", new Date(), 50, "robbery", "James Johnson", "Tiny", "I would've gotten away with it if it wasn't for you pesky kids!", "No scooby snacks");
 		reports.put(3, c);
 	}
 

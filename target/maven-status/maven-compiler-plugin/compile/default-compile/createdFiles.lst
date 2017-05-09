@@ -1,3 +1,5 @@
 com\pbs\App.class
 com\pbs\controller\HomeController.class
-com\pbs\controller\PBSController.class
+com\pbs\controller\ReportStub.class
+com\pbs\controller\ReportController.class
+com\pbs\model\Report.class
