@@ -13,8 +13,8 @@ public class NoAction extends Report {
     String statement;
     String details;
 
-    public NoAction(Integer id, String reportName, Date reportDate, Integer officerId, String suspectedCrimes, String persons,String officers,String statement, String details) {
-        super(id, reportName, reportDate, officerId);
+    public NoAction(Integer id, String reportName, Date reportDate, Integer officerId, String suspectedCrimes, String persons,String officers,String statement, String details, String isVerified) {
+        super(id, reportName, reportDate, officerId, isVerified);
         this.suspectedCrimes = suspectedCrimes;
         this.persons = persons;
         this.officers = officers;

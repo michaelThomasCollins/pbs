@@ -1,4 +1,10 @@
 angular.module('app.controllers', []).controller('ReportDeleteController', function ($scope, $state, popupService, $window, Report) {
+
+
+
+}).controller('ReportViewController', function ($scope, $state, $stateParams, popupService, $window,Report) {
+    $scope.report = Report.get({id: $stateParams.id}); //Get a single report.Issues a GET to /api/v1/reports/:id
+
     $scope.deleteReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
         if (popupService.showPopup('Really delete this?')) {
             report.$delete(function () {
@@ -7,15 +13,21 @@ angular.module('app.controllers', []).controller('ReportDeleteController', funct
         }
     };
 
-    // $scope.verifyReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
-    //     if (popupService.showPopup('Are you sure?')) {
-    //         report.$update(function () {
-    //             $state.go('home');
-    //         });
-    //     }
-    // };
-}).controller('ReportViewController', function ($scope, $stateParams, Report) {
-    $scope.report = Report.get({id: $stateParams.id}); //Get a single report.Issues a GET to /api/v1/reports/:id
+    $scope.verifyReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
+        if (popupService.showPopup('Are you sure?')) {
+            report.isVerified = "Yes";
+            report.$update(function () {
+            });
+        }
+    };
+
+    $scope.denyReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
+        if (popupService.showPopup('Are you sure?')) {
+            report.isVerified = "No";
+            report.$update(function () {
+            });
+        }
+    };
 }).controller('LoginController', function ($scope, Report) {
     //TODO Write a method to verify users credentials
     $scope.verifyCredentials = function () {

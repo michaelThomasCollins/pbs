@@ -7,14 +7,16 @@ public abstract class Report {
 	String reportName;
 	Date reportDate;
 	Integer officerId;
+    String isVerified;
 
 	public Report() { }
 
-	public Report(Integer id, String reportName, Date reportDate, Integer officerId) {
+	public Report(Integer id, String reportName, Date reportDate, Integer officerId, String isVerified) {
 		this.id = id;
 		this.reportName = reportName;
 		this.reportDate = reportDate;
 		this.officerId = officerId;
+		this.isVerified = isVerified;
 	}
 
 	public Integer getId() {
@@ -48,4 +50,12 @@ public abstract class Report {
 	public void setOfficerId(Integer officerId) {
 		this.officerId = officerId;
 	}
+
+    public String getIsVerified() {
+        return isVerified;
+    }
+
+    public void setIsVerified(String verified) {
+        isVerified = verified;
+    }
 }
