@@ -19,4 +19,4 @@ angular.module('app.services', []).factory('Report', function($resource) {
             reportType = value;
         }
     };
-});;
+});

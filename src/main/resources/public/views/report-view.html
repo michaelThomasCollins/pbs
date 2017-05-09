@@ -1,35 +1,16 @@
 <div class="container pad-top">
-  <table class="table shipwrecktable">
-      <tr>
-          <td><h3>Details for {{shipwreck.name}}</h3></td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>Name</td>
-          <td>{{shipwreck.name}}</td>
-      </tr>
-      <tr>
-          <td>Description</td>
-          <td>{{shipwreck.description}}</td>
-      </tr>
-      <tr>
-          <td>Wreck Condition</td>
-          <td>{{shipwreck.condition}}</td>
-      </tr>
-      <tr>
-          <td>Year Discovered</td>
-          <td>{{shipwreck.yearDiscovered}}</td>
-      </tr>
-      <tr>
-          <td>Depth of Wreck</td>
-          <td>{{shipwreck.depth}}</td>
-      </tr>
-      <tr>
-          <td>Location</td>
-          <td>{{shipwreck.latitude}}, {{shipwreck.longitude}}</td>
-      </tr>
-  </table>
+    <form class="form-horizontal" role="form">
+        <!--Viewing a report is very similar to add/editing a report, except that it cannot be changed-->
+        <!--That is why it has been disabled below:-->
+        <fieldset ng-disabled=true>
+            <!--STUB-->
+            <div ng-include="'views/_no_action_form.html'"></div>
+        </fieldset>
+    </form>
   <div>
-      <a class="btn btn-primary" ui-sref="editShipwreck({id:shipwreck.id})">Edit</a>
+      <a class="btn btn-primary" ui-sref="editReport({id:report.id})">Edit</a>
+      <a class="btn btn-danger"  ng-click="deleteReport(report)">Delete</a>
+      <a class="btn btn-primary" ng-click="verifyReport(report)">Verify</a>
+      <a class="btn btn-primary" ng-click="denyReport(report)">Deny</a>
   </div>
 </div>
