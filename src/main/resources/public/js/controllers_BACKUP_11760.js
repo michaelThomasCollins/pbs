@@ -68,11 +68,7 @@ angular.module('app.controllers', []).controller('ReportDeleteController', funct
         return reportTypeService.getReportType();
     };
 
-<<<<<<< HEAD
 }).controller('ReportSearchController', function ($scope, $state, $stateParams, Report) {
-=======
-}).controller('ReportSearchController', function ($scope, $state, $stateParams) {
->>>>>>> 3c26693a1273248c5f329de19eea5b51be601722
     //TODO Write a method to verify users credentials
     $scope.reports = Report.query(); //fetch all reports. Issues a GET to /api/vi/reports
 
@@ -91,7 +87,7 @@ angular.module('app.controllers', []).controller('ReportDeleteController', funct
 =======
     $scope.searchReport = function () {
 // TODO Return specific data values
-        $scope.shipwrecks = Report.query(); //fetch all reports. Issues a GET to /api/vi/reports
+        $scope.reports = Report.query(); //fetch all reports. Issues a GET to /api/vi/reports
         $state.go('reports');
     };
 >>>>>>> 3c26693a1273248c5f329de19eea5b51be601722
