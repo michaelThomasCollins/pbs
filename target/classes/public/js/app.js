@@ -56,7 +56,7 @@
             templateUrl: viewsPrefix + 'chooseReportType.html',
             controller: 'ChooseReportTypeController'
         }).state('reports', {
-            url: '/select-report',
+            url: '/reports',
             templateUrl: viewsPrefix + 'reports.html',
             controller:'ReportSearchController'
         }).state('viewReport', {

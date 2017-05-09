@@ -68,17 +68,19 @@ angular.module('app.controllers', []).controller('ReportDeleteController', funct
         return reportTypeService.getReportType();
     };
 
-}).controller('ReportSearchController', function ($scope, $state, $stateParams) {
+}).controller('ReportSearchController', function ($scope, $state, $stateParams, Report) {
     //TODO Write a method to verify users credentials
-    $scope.enterPressed = function (e) {
-        if (e.which == 13 || e.keyCode == 13) {
-            $scope.searchReport();
-        }
-    };
+    $scope.reports = Report.query(); //fetch all reports. Issues a GET to /api/vi/reports
 
-    $scope.searchReport = function () {
-// TODO Return specific data values
-        $scope.shipwrecks = Report.query(); //fetch all reports. Issues a GET to /api/vi/reports
-        $state.go('reports');
-    };
+    // $scope.enterPressed = function (e) {
+    //     if (e.which == 13 || e.keyCode == 13) {
+    //         $scope.searchReport();
+    //     }
+    // };
+
+//     $scope.searchReport = function () {
+// // TODO Return specific data values
+//         $state.go('reports');
+//         $scope.reports = Report.query(); //fetch all reports. Issues a GET to /api/vi/reports
+//     };
 });

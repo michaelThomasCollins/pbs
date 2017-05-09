@@ -24,20 +24,20 @@ public class ReportStub {
 		return new ArrayList<Report>(reports.values());
 	}
 
-	public static Report create(Report wreck) {
+	public static Report create(Report report) {
 		idIndex += idIndex;
-		wreck.setId(idIndex);
-		reports.put(idIndex, wreck);
-		return wreck;
+		report.setId(idIndex);
+		reports.put(idIndex, report);
+		return report;
 	}
 
 	public static Report get(Integer id) {
 		return reports.get(id);
 	}
 
-	public static Report update(Integer id, Report wreck) {
-		reports.put(id, wreck);
-		return wreck;
+	public static Report update(Integer id, Report report) {
+		reports.put(id, report);
+		return report;
 	}
 
 	public static Report delete(Integer id) {
