@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by Michael on 09/05/2017.
  */
-public class NoAction extends Report {
+public class NoAction {
 
     String suspectedCrimes;
     String persons;
@@ -13,8 +13,7 @@ public class NoAction extends Report {
     String statement;
     String details;
 
-    public NoAction(Integer id, String reportName, Date reportDate, Integer officerId, String suspectedCrimes, String persons,String officers,String statement, String details, String isVerified) {
-        super(id, reportName, reportDate, officerId, isVerified);
+    public NoAction(Integer id, String reportName, String reportDate, Integer officerId, String suspectedCrimes, String persons,String officers,String statement, String details, String isVerified) {
         this.suspectedCrimes = suspectedCrimes;
         this.persons = persons;
         this.officers = officers;

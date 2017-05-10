@@ -1,14 +1,10 @@
-angular.module('app.controllers', []).controller('ReportDeleteController', function ($scope, $state, popupService, $window, Report) {
-
-
-
-}).controller('ReportViewController', function ($scope, $state, $stateParams, popupService, $window,Report) {
+angular.module('app.controllers', []).controller('ReportViewController', function ($scope, $state, $stateParams, popupService, $window,$filter,Report) {
     $scope.report = Report.get({id: $stateParams.id}); //Get a single report.Issues a GET to /api/v1/reports/:id
 
     $scope.deleteReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
         if (popupService.showPopup('Really delete this?')) {
             report.$delete(function () {
-                $state.go('home');
+                $state.go('reports');
             });
         }
     };
@@ -16,7 +12,7 @@ angular.module('app.controllers', []).controller('ReportDeleteController', funct
     $scope.verifyReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
         if (popupService.showPopup('Are you sure?')) {
             report.isVerified = "Yes";
-            report.$update(function () {
+            $scope.report.$update(function () {
             });
         }
     };
@@ -24,7 +20,7 @@ angular.module('app.controllers', []).controller('ReportDeleteController', funct
     $scope.denyReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
         if (popupService.showPopup('Are you sure?')) {
             report.isVerified = "No";
-            report.$update(function () {
+            $scope.report.$update(function () {
             });
         }
     };
@@ -34,7 +30,7 @@ angular.module('app.controllers', []).controller('ReportDeleteController', funct
 
         alert(Report.toString());
     };
-}).controller('ReportCreateController', function ($scope, $state, $stateParams, Report) {
+}).controller('ReportCreateController', function ($scope, $state, $stateParams, Report,$rootScope) {
     $scope.report = new Report();  //create new report instance. Properties will be set via ng-model on UI
 
     $scope.addReport = function () { //create a new report. Issues a POST to /api/v1/reports
@@ -42,10 +38,15 @@ angular.module('app.controllers', []).controller('ReportDeleteController', funct
             $state.go('home'); // on success go back to the home page
         });
     };
+
+    $scope.getReportType = function () {
+        //TODO Write code that holds the state of the report type (currently if refresh, then lose state) !$stateParams!
+        return $rootScope.reportType;
+    };
 }).controller('ReportEditController', function ($scope, $state, $stateParams, Report) {
-    $scope.updateReport = function () { //Update the edited report. Issues a PUT to /api/v1/reports/:id
-        $scope.report.$update(function () {
-            $state.go('home'); // on success go back to home state.
+    $scope.updateReport = function() { //Update the edited report. Issues a PUT to /api/v1/reports/:id
+        $scope.report.$update(function() {
+            $state.go('reports'); // on success go back to the home page
         });
     };
 
@@ -54,7 +55,7 @@ angular.module('app.controllers', []).controller('ReportDeleteController', funct
     };
 
     $scope.loadReport(); // Load a report which can be edited on UI
-}).controller('ChooseReportTypeController', function ($scope, $state, $stateParams, reportTypeService) {
+}).controller('ChooseReportTypeController', function ($scope, $state, $stateParams, $rootScope) {
     $scope.reportType = 'views/_no_action_form.html';
 
     $scope.chooseReport = function () {
@@ -63,7 +64,7 @@ angular.module('app.controllers', []).controller('ReportDeleteController', funct
         var choice = x.options[x.selectedIndex].text;
         if (choice == "No Action") {
             $state.go('newReport');
-            reportTypeService.setReportType('views/_no_action_form.html');
+            $rootScope.reportType = ('views/_no_action_form.html');
         } else if (choice == "investigation") {
 
         } else if (choice == "intervention") {
@@ -73,11 +74,6 @@ angular.module('app.controllers', []).controller('ReportDeleteController', funct
         } else {
             alert("Please select an option");
         }
-    };
-
-    $scope.getReportType = function () {
-        //TODO Write code that holds the state of the report type (currently if refresh, then lose state) !$stateParams!
-        return reportTypeService.getReportType();
     };
 
 }).controller('ReportSearchController', function ($scope, $state, $stateParams, Report) {

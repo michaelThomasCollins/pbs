@@ -13,11 +13,11 @@ public class ReportStub {
     static {
 //			public Report(Integer id, String reportName, Date reportDate, String suspectedCrimes, Integer officerId, String persons, String officers, String statement, String details) {
 
-        NoAction a = new NoAction(1, "First Report", new Date(), 200, "arse-on", "Frank Duffy", "Oof", "It Wasn't me", "It was him", "Yes");
+        Report a = new Report(1, "First Report", "02/06/2016", 200, "arse-on", "Frank Duffy", "Oof", "It Wasn't me", "It was him", "Yes");
         reports.put(1, a);
-        NoAction b = new NoAction(2, "Second Report", new Date(), 80, "murder", "Michael Collins", "Thud", "I'll Kill Again", "He's got a knife!", "No");
+        Report b = new Report(2, "Second Report", "01/02/2013", 80, "murder", "Michael Collins", "Thud", "I'll Kill Again", "He's got a knife!", "No");
         reports.put(2, b);
-        NoAction c = new NoAction(3, "Third Report", new Date(), 50, "robbery", "James Johnson", "Tiny", "I would've gotten away with it if it wasn't for you pesky kids!", "No scooby snacks", "Yes");
+        Report c = new Report(3, "Third Report", "11/03/2007", 50, "robbery", "James Johnson", "Tiny", "I would've gotten away with it if it wasn't for you pesky kids!", "No scooby snacks", "Yes");
         reports.put(3, c);
     }
 

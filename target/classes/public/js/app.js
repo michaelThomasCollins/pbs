@@ -64,9 +64,9 @@
             templateUrl: viewsPrefix + 'report-view.html',
             controller: 'ReportViewController'
         }).state('newReport', {
-            url: '/reports/:reportType/new',
+            url: '/reports/new',
             templateUrl: viewsPrefix + 'report-add.html',
-            controller: 'ChooseReportTypeController'
+            controller: 'ReportCreateController'
         }).state('editReport', {
             url: '/reports/:id/edit',
             templateUrl: viewsPrefix + 'report-edit.html',

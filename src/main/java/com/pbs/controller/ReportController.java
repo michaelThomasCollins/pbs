@@ -1,5 +1,6 @@
 package com.pbs.controller;
 
+import com.pbs.model.NoAction;
 import com.pbs.model.Report;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -9,13 +10,14 @@ import java.util.List;
 
 /**
  * Created by Michael on 27/04/2017.
+ * A controller to
  */
 
 @RestController
 @RequestMapping("api/v1/")
 public class ReportController {
 
-    @RequestMapping(value = "reports", method = RequestMethod.GET)
+    @RequestMapping(value = "users", method = RequestMethod.GET)
     public List<Report> list() {
         return ReportStub.list();
     }
