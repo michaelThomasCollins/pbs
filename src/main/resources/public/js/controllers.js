@@ -1,30 +1,43 @@
-angular.module('app.controllers', []).controller('ReportViewController', function ($scope, $state, $stateParams, popupService, $window,$filter,Report) {
+angular.module('app.controllers', []).controller('ReportViewController', function ($scope, $state, $stateParams, popupService, $window, $filter, $rootScope, Report) {
     $scope.report = Report.get({id: $stateParams.id}); //Get a single report.Issues a GET to /api/v1/reports/:id
 
     $scope.deleteReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
-        if (popupService.showPopup('Really delete this?')) {
+        if ($rootScope.permissions == "Officer") {
+
+            if (popupService.showPopup('Really delete this?')) {
             report.$delete(function () {
                 $state.go('reports');
             });
         }
+        } else {
+            alert("You are not permitted to access this functionality!");
+        }
     };
 
     $scope.verifyReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
-        if (popupService.showPopup('Are you sure?')) {
-            report.isVerified = "Yes";
-            $scope.report.$update(function () {
-            });
+        if ($rootScope.permissions == "Verifier") {
+            if (popupService.showPopup('Are you sure?')) {
+                report.isVerified = "Yes";
+                $scope.report.$update(function () {
+                });
+            }
+        } else {
+            alert("You are not permitted to access this functionality!");
         }
     };
 
     $scope.denyReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
-        if (popupService.showPopup('Are you sure?')) {
-            report.isVerified = "No";
-            $scope.report.$update(function () {
-            });
+        if ($rootScope.permissions == "Verifier") {
+            if (popupService.showPopup('Are you sure?')) {
+                report.isVerified = "No";
+                $scope.report.$update(function () {
+                });
+            }
+        } else {
+            alert("You are not permitted to access this functionality!");
         }
     };
-}).controller('ReportCreateController', function ($scope, $state, $stateParams, Report,$rootScope) {
+}).controller('ReportCreateController', function ($scope, $state, $stateParams, Report, $rootScope) {
     $scope.report = new Report();  //create new report instance. Properties will be set via ng-model on UI
 
     $scope.addReport = function () { //create a new report. Issues a POST to /api/v1/reports
@@ -38,8 +51,8 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
         return $rootScope.reportType;
     };
 }).controller('ReportEditController', function ($scope, $state, $stateParams, Report) {
-    $scope.updateReport = function() { //Update the edited report. Issues a PUT to /api/v1/reports/:id
-        $scope.report.$update(function() {
+    $scope.updateReport = function () { //Update the edited report. Issues a PUT to /api/v1/reports/:id
+        $scope.report.$update(function () {
             $state.go('reports'); // on success go back to the home page
         });
     };
@@ -85,15 +98,18 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
 //         $state.go('reports');
 //         $scope.reports = Report.query(); //fetch all reports. Issues a GET to /api/vi/reports
 //     };
-}).controller('LoginController', function ($scope, $state, $stateParams,$rootScope, User) {
+}).controller('LoginController', function ($scope, $state, $stateParams, $rootScope, User) {
     $scope.verifyUser = function () { //Issues a GET request to /api/v1/users/:id to get a user to verify
         var uname = $scope.User.userName;
         var password = $scope.User.password;
         var userPromise = User.get({userName: uname});
         userPromise.$promise.then(
-            function(answer){
-                if(answer.password == password){
+            function (answer) {
+                if (answer.password == password) {
+                    $rootScope.permissions = answer.permissions;
                     $state.go('home');
+                } else {
+                    alert('Incorrect Data');
                 }
             }
         );

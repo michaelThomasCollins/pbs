@@ -8,7 +8,7 @@
         </fieldset>
     </form>
   <div>
-      <a class="btn btn-primary" ui-sref="editReport({id:report.id})">Edit</a>
+      <a class="btn btn-primary" ng-show="permissions === 'Officer'" ui-sref="editReport({id:report.id})">Edit</a>
       <a class="btn btn-danger"  ng-click="deleteReport(report)">Delete</a>
       <a class="btn btn-primary" ng-click="verifyReport(report)">Verify</a>
       <a class="btn btn-primary" ng-click="denyReport(report)">Deny</a>
