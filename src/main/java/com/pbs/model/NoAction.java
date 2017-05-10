@@ -5,23 +5,26 @@ import java.util.Date;
 /**
  * Created by Michael on 09/05/2017.
  */
-public class NoAction {
+public class NoAction extends Report{
 
     String suspectedCrimes;
     String persons;
     String officers;
     String statement;
     String details;
+    String reportType = "no_action";
 
-    public NoAction(Integer id, String reportName, String reportDate, Integer officerId, String suspectedCrimes, String persons,String officers,String statement, String details, String isVerified) {
+    // This constructor has to be implemented due to weird Spring implementation
+    public NoAction() { }
+
+    public NoAction(Integer id, String reportName, String reportDate, Integer officerId, String suspectedCrimes, String persons, String officers, String statement, String details, String isVerified) {
+        super(id, reportName, reportDate, officerId, isVerified);
         this.suspectedCrimes = suspectedCrimes;
         this.persons = persons;
         this.officers = officers;
         this.statement = statement;
         this.details = details;
-
     }
-
 
     public String getSuspectedCrimes() {
         return suspectedCrimes;
@@ -61,5 +64,9 @@ public class NoAction {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public String getReportType() {
+        return reportType;
     }
 }

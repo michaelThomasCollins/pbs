@@ -27,3 +27,19 @@ angular.module('app.services', []).factory('Report', function ($resource) {
         }
     };
 });
+// .factory('getReportType', function() {
+//     return {
+//         returnReportTypeForm: function($scope) {
+//             var reportType = $scope.report.reportType;
+//             if (reportType == "NoAction") {
+//                 re'views/_no_action_form.html');
+// } else if (reportType == "Investigation") {
+//
+// } else if (reportType == "Intervention") {
+//
+// } else if (reportType == "InMotion") {
+//
+// }
+// }
+// };
+// })

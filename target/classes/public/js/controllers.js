@@ -5,10 +5,10 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
         if ($rootScope.permissions == "Officer") {
 
             if (popupService.showPopup('Really delete this?')) {
-            report.$delete(function () {
-                $state.go('reports');
-            });
-        }
+                report.$delete(function () {
+                    $state.go('reports');
+                });
+            }
         } else {
             alert("You are not permitted to access this functionality!");
         }
@@ -37,9 +37,13 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
             alert("You are not permitted to access this functionality!");
         }
     };
+    $scope.getReportType = function () {
+
+        return 'views/_' + $scope.report.reportType + '_form.html';
+    };
 }).controller('ReportCreateController', function ($scope, $state, $stateParams, Report, $rootScope) {
     $scope.report = new Report();  //create new report instance. Properties will be set via ng-model on UI
-
+    $scope.report.reportType = $rootScope.reportType;
     $scope.addReport = function () { //create a new report. Issues a POST to /api/v1/reports
         $scope.report.$save(function () {
             $state.go('home'); // on success go back to the home page
@@ -47,14 +51,17 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
     };
 
     $scope.getReportType = function () {
-        //TODO Write code that holds the state of the report type (currently if refresh, then lose state) !$stateParams!
-        return $rootScope.reportType;
+        return 'views/_' + $scope.report.reportType + '_form.html';
     };
-}).controller('ReportEditController', function ($scope, $state, $stateParams, Report) {
+}).controller('ReportEditController', function ($scope, $state, $stateParams, $rootScope, Report) {
     $scope.updateReport = function () { //Update the edited report. Issues a PUT to /api/v1/reports/:id
         $scope.report.$update(function () {
             $state.go('reports'); // on success go back to the home page
         });
+    };
+
+    $scope.getReportType = function () {
+        return 'views/_' + $scope.report.reportType + '_form.html';
     };
 
     $scope.loadReport = function () { //Issues a GET request to /api/v1/reports/:id to get a report to update
@@ -63,7 +70,6 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
 
     $scope.loadReport(); // Load a report which can be edited on UI
 }).controller('ChooseReportTypeController', function ($scope, $state, $stateParams, $rootScope) {
-    $scope.reportType = 'views/_no_action_form.html';
 
     $scope.chooseReport = function () {
         //TODO Could improve this code here, see editShipwreck({id:shipwreck.id}) formatting
@@ -71,7 +77,7 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
         var choice = x.options[x.selectedIndex].text;
         if (choice == "No Action") {
             $state.go('newReport');
-            $rootScope.reportType = ('views/_no_action_form.html');
+            $rootScope.reportType = ('no_action');
         } else if (choice == "investigation") {
 
         } else if (choice == "intervention") {
@@ -107,6 +113,7 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
             function (answer) {
                 if (answer.password == password) {
                     $rootScope.permissions = answer.permissions;
+                    $rootScope.userName = answer.userName;
                     $state.go('home');
                 } else {
                     alert('Incorrect Data');

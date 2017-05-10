@@ -15,15 +15,4 @@ angular.module('app.services', []).factory('Report', function ($resource) {
     this.showPopup = function (message) {
         return $window.confirm(message);
     }
-}).service('reportTypeService', function () {
-    var reportType = 'null';
-
-    return {
-        getReportType: function () {
-            return reportType;
-        },
-        setReportType: function (value) {
-            reportType = value;
-        }
-    };
-});
+})
