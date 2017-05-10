@@ -24,12 +24,6 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
             });
         }
     };
-}).controller('LoginController', function ($scope, Report) {
-    //TODO Write a method to verify users credentials
-    $scope.verifyCredentials = function () {
-
-        alert(Report.toString());
-    };
 }).controller('ReportCreateController', function ($scope, $state, $stateParams, Report,$rootScope) {
     $scope.report = new Report();  //create new report instance. Properties will be set via ng-model on UI
 
@@ -91,6 +85,22 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
 //         $state.go('reports');
 //         $scope.reports = Report.query(); //fetch all reports. Issues a GET to /api/vi/reports
 //     };
-}).controller('LoginController', function ($scope, $state, $stateParams, Report) {
+}).controller('LoginController', function ($scope, $state, $stateParams,$rootScope, User) {
+    $scope.verifyUser = function () { //Issues a GET request to /api/v1/users/:id to get a user to verify
+        var uname = $scope.User.userName;
+        var password = $scope.User.password;
+        var userPromise = User.get({userName: uname});
+        userPromise.$promise.then(
+            function(answer){
+                if(answer.password == password){
+                    $state.go('home');
+                }
+            }
+        );
 
+        // if($scope.user != null){
+        //     $rootScope.userName = $scope.user.userName;
+        //     $state.go('home');
+        // }
+    };
 });

@@ -30,6 +30,11 @@ public class UserStub {
         users.put(uname3, c);
     }
 
+    //Return  a list of all users in the system
+    public static List<User> list() {
+        return new ArrayList<User>(users.values());
+    }
+
     //Return a user
     public static User get(String userName) {
         return users.get(userName);

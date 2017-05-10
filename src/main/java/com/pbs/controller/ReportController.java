@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("api/v1/")
 public class ReportController {
 
-    @RequestMapping(value = "users", method = RequestMethod.GET)
+    @RequestMapping(value = "reports", method = RequestMethod.GET)
     public List<Report> list() {
         return ReportStub.list();
     }

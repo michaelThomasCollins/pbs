@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * Created by Michael on 10/05/2017.
  * A controller concerned with the passing of User Data,
@@ -14,6 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/v1/")
 public class UserController {
+
+//    @RequestMapping(value = "users", method = RequestMethod.GET)
+//    public List<User> list() {
+//        return UserStub.list();
+//    }
 
     @RequestMapping(value = "users/{userName}", method = RequestMethod.GET)
     public User get(@PathVariable String userName) {
