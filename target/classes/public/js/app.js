@@ -45,7 +45,8 @@
                 templateUrl: viewsPrefix + "home.html",
                 data: {
                     pageTitle: 'Home'
-                }
+                },
+                controller: 'HomeController'
             })
             .state('reportSearch', {
                 url: '/reportSearch',

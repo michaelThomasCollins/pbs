@@ -2,8 +2,7 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
     $scope.report = Report.get({id: $stateParams.id}); //Get a single report.Issues a GET to /api/v1/reports/:id
 
     $scope.deleteReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
-        if ($rootScope.permissions == "Officer") {
-
+        if (sessionStorage.getItem('permissions') == "Officer") {
             if (popupService.showPopup('Really delete this?')) {
                 report.$delete(function () {
                     $state.go('reports');
@@ -15,7 +14,7 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
     };
 
     $scope.verifyReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
-        if ($rootScope.permissions == "Verifier") {
+        if (sessionStorage.getItem('permissions') == "Verifier") {
             if (popupService.showPopup('Are you sure?')) {
                 report.isVerified = "Yes";
                 $scope.report.$update(function () {
@@ -27,7 +26,7 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
     };
 
     $scope.denyReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
-        if ($rootScope.permissions == "Verifier") {
+        if (sessionStorage.getItem('permissions') == "Verifier") {
             if (popupService.showPopup('Are you sure?')) {
                 report.isVerified = "No";
                 $scope.report.$update(function () {
@@ -41,9 +40,12 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
 
         return 'views/_' + $scope.report.reportType + '_form.html';
     };
-}).controller('ReportCreateController', function ($scope, $state, $stateParams, Report, $rootScope) {
-    $scope.report = new Report();  //create new report instance. Properties will be set via ng-model on UI
-    $scope.report.reportType = $rootScope.reportType;
+    $scope.getPermissions = function () {
+        return sessionStorage.getItem('permissions')
+    };
+}).controller('ReportCreateController', function ($scope, $state, $stateParams, NoAction) {
+    $scope.report = new NoAction();  //create new report instance. Properties will be set via ng-model on UI
+    $scope.report.reportType = sessionStorage.newReportType;
     $scope.addReport = function () { //create a new report. Issues a POST to /api/v1/reports
         $scope.report.$save(function () {
             $state.go('home'); // on success go back to the home page
@@ -52,6 +54,9 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
 
     $scope.getReportType = function () {
         return 'views/_' + $scope.report.reportType + '_form.html';
+    };
+    $scope.getPermissions = function () {
+        return sessionStorage.getItem('permissions')
     };
 }).controller('ReportEditController', function ($scope, $state, $stateParams, $rootScope, Report) {
     $scope.updateReport = function () { //Update the edited report. Issues a PUT to /api/v1/reports/:id
@@ -62,6 +67,10 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
 
     $scope.getReportType = function () {
         return 'views/_' + $scope.report.reportType + '_form.html';
+    };
+
+    $scope.getPermissions = function () {
+      return sessionStorage.getItem('permissions')
     };
 
     $scope.loadReport = function () { //Issues a GET request to /api/v1/reports/:id to get a report to update
@@ -76,28 +85,36 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
         var x = document.getElementById("option");
         var choice = x.options[x.selectedIndex].text;
         if (choice == "No Action") {
+            sessionStorage.newReportType = ('no_action');
             $state.go('newReport');
-            $rootScope.reportType = ('no_action');
-        } else if (choice == "investigation") {
-
-        } else if (choice == "intervention") {
-
-        } else if (choice == "inMotion") {
-
+        } else if (choice == "Investigation") {
+            sessionStorage.newReportType = ('investigation');
+            $state.go('newReport');
+        } else if (choice == "Intervention") {
+            sessionStorage.newReportType = ('intervention');
+            $state.go('newReport');
+        } else if (choice == "In Motion") {
+            sessionStorage.newReportType = ('in_motion');
+            $state.go('newReport');
         } else {
             alert("Please select an option");
         }
     };
 
-}).controller('ReportSearchController', function ($scope, $state, $stateParams, Report) {
+}).controller('ReportSearchController', function ($scope, $state, $stateParams, Search, Report) {
     //TODO Write a method to verify users credentials
-    $scope.reports = Report.query(); //fetch all reports. Issues a GET to /api/vi/reports
 
-    // $scope.enterPressed = function (e) {
-    //     if (e.which == 13 || e.keyCode == 13) {
-    //         $scope.searchReport();
-    //     }
-    // };
+    $scope.searchReports = function(){
+        var reportId = $scope.Report.id;
+        var reportDate = $scope.Report.reportDate;
+        var officerId = $scope.Report.officerId;
+        var reportName = $scope.Report.reportName;
+
+        var searchData = reportId + ';' + reportDate + ';' + officerId + ';' + reportName;
+
+        $state.go('reports');
+    };
+    $scope.reports = Search.query({searchData: "1;hi;101;efd"}); //fetch all reports. Issues a GET to /api/vi/reports
 
 //     $scope.searchReport = function () {
 // // TODO Return specific data values
@@ -112,18 +129,25 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
         userPromise.$promise.then(
             function (answer) {
                 if (answer.password == password) {
-                    $rootScope.permissions = answer.permissions;
-                    $rootScope.userName = answer.userName;
+                    sessionStorage.setItem('permissions', answer.permissions);
+                    sessionStorage.setItem('userName', answer.userName);
                     $state.go('home');
                 } else {
                     alert('Incorrect Data');
                 }
             }
         );
+    };
+}).controller('HomeController', function ($scope, $state) {
+    $scope.getPermissions = function () {
+        return sessionStorage.getItem('permissions')
+    };
+    $scope.getUserName = function () {
+        return sessionStorage.getItem('userName')
+    };
 
-        // if($scope.user != null){
-        //     $rootScope.userName = $scope.user.userName;
-        //     $state.go('home');
-        // }
+    $scope.logOut = function () {
+      sessionStorage.clear();
+      $state.go('login')
     };
 });

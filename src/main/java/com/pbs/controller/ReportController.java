@@ -17,29 +17,38 @@ import java.util.List;
 @RequestMapping("api/v1/")
 public class ReportController {
 
-    @RequestMapping(value = "reports", method = RequestMethod.GET)
-    public List<NoAction> list() {
-        return ReportStub.list();
+    /*
+        Return a list of all the reports within the system
+     */
+    @RequestMapping(value = "search/{searchData}", method = RequestMethod.GET)
+    public List<Report> list(@PathVariable String searchData) {
+        return ReportStub.list(searchData);
     }
 
+    /*
+        Create a Report and save into the system
+     */
     @RequestMapping(value = "reports", method = RequestMethod.POST)
     public NoAction create(@RequestBody NoAction report) {
-        return ReportStub.create(report);
+        return ReportStub.createNoAction(report);
     }
 
+    /*
+
+     */
     @RequestMapping(value = "reports/{id}", method = RequestMethod.GET)
     public NoAction get(@PathVariable Integer id) {
-        return ReportStub.get(id);
+        return ReportStub.getNoAction(id);
     }
 
     @RequestMapping(value = "reports/{id}", method = RequestMethod.PUT)
     public NoAction update(@PathVariable Integer id, @RequestBody NoAction report) {
-        return ReportStub.update(id, report);
+        return ReportStub.updateNoAction(id, report);
     }
 
     @RequestMapping(value = "reports/{id}", method = RequestMethod.DELETE)
-    public NoAction delete(@PathVariable Integer id) {
-        return ReportStub.delete(id);
+    public Report delete(@PathVariable Integer id) {
+        return ReportStub.deleteNoAction(id);
     }
 
 

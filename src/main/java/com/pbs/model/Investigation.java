@@ -1,29 +1,33 @@
 package com.pbs.model;
 
-import java.util.Date;
-
 /**
  * Created by Michael on 09/05/2017.
  */
-public class NoAction extends Report{
+public class Investigation extends Report {
 
     String suspectedCrimes;
-    String persons;
+    String suspects;
+    String witnesses;
     String officers;
     String statement;
     String details;
-    String reportType = "no_action";
+    String dateOccurred;
 
-    // This constructor has to be implemented due to weird Spring implementation
-    public NoAction() { }
+    // This constructor has to be implemented due to weird Spring configuration
+    public Investigation() {
+    }
 
-    public NoAction(Integer id, String reportName, String reportDate, Integer officerId, String suspectedCrimes, String persons, String officers, String statement, String details, String isVerified) {
-        super(id, reportName, reportDate, officerId, isVerified,"no_action");
+    public Investigation(Integer id, String reportName, String reportDate, Integer officerId,
+                         String suspectedCrimes, String suspects, String witnesses,String officers, String statement,
+                         String details, String dateOccurred, String isVerified) {
+        super(id, reportName, reportDate, officerId, isVerified, "investigation");
         this.suspectedCrimes = suspectedCrimes;
-        this.persons = persons;
+        this.suspects = suspects;
+        this.witnesses = witnesses;
         this.officers = officers;
         this.statement = statement;
         this.details = details;
+        this.dateOccurred = dateOccurred;
     }
 
     public String getSuspectedCrimes() {
@@ -34,12 +38,12 @@ public class NoAction extends Report{
         this.suspectedCrimes = suspectedCrimes;
     }
 
-    public String getPersons() {
-        return persons;
+    public String getSuspects() {
+        return suspects;
     }
 
-    public void setPersons(String persons) {
-        this.persons = persons;
+    public void setSuspects(String suspects) {
+        this.suspects = suspects;
     }
 
     public String getOfficers() {

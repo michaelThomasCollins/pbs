@@ -1,5 +1,11 @@
+com\pbs\model\User.class
 com\pbs\App.class
 com\pbs\controller\HomeController.class
 com\pbs\controller\ReportStub.class
+com\pbs\model\NoAction.class
+com\pbs\model\Intervention.class
+com\pbs\controller\UserController.class
+com\pbs\model\Investigation.class
+com\pbs\controller\UserStub.class
 com\pbs\controller\ReportController.class
 com\pbs\model\Report.class

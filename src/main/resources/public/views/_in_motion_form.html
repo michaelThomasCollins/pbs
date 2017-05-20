@@ -1,0 +1,89 @@
+<div class="form-group">
+    <div class="container">
+        <div ng-include="'views/_form_header.html'"></div>
+    </div>
+</div>
+<div class="form-group" >
+    <label for="courtDate" class="col-sm-2 control-label">Court Date:</label>
+    <div class="col-sm-10">
+        <input type="text" ng-model="report.courtDate" class="form-control" id="courtDate"
+               placeholder="Court Date"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="convicts" class="col-sm-2 control-label">Convicted Person(s):</label>
+    <div class="col-sm-10">
+        <input type="text" ng-model="report.convicts" class="form-control" id="convicts"
+               placeholder="Suspect(s)"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="victims" class="col-sm-2 control-label">Victim(s):</label>
+    <div class="col-sm-10">
+        <input type="text" ng-model="report.victims" class="form-control" id="victims"
+               placeholder="Victim(s)"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="officers" class="col-sm-2 control-label">Officer(s) Involved:</label>
+    <div class="col-sm-10">
+        <input type="text" ng-model="report.officers" class="form-control" id="officers"
+               placeholder="Officer(s) Involved"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="statement" class="col-sm-2 control-label">Statement(s):</label>
+    <div class="col-sm-10">
+        <input type="text" ng-model="report.statement" class="form-control" id="statement"
+               placeholder="Statement(s)"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="details" class="col-sm-2 control-label">Additional Details:</label>
+    <div class="col-sm-10">
+        <input type="text" ng-model="report.details" class="form-control" id="details"
+               placeholder="Additional Details"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="dateOccurred" class="col-sm-2 control-label">Date Occurred:</label>
+    <div class="col-sm-10">
+        <input type="text" ng-model="report.dateOccurred" class="form-control" id="dateOccurred"
+               placeholder="Date Occurred"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="crimeLoc" class="col-sm-2 control-label">Crime Location(s):</label>
+    <div class="col-sm-10">
+        <input type="text" ng-model="report.crimeLoc" class="form-control" id="crimeLoc"
+               placeholder="Crime Location(s)"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="arrestLoc" class="col-sm-2 control-label">Arrest Location(s):</label>
+    <div class="col-sm-10">
+        <input type="text" ng-model="report.arrestLoc" class="form-control" id="arrestLoc"
+               placeholder="Arrest Location(s)"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="charges" class="col-sm-2 control-label">Charge(s):</label>
+    <div class="col-sm-10">
+        <input type="text" ng-model="report.charges" class="form-control" id="charges"
+               placeholder="Charge(s)"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="involvement" class="col-sm-2 control-label">Officer Involvement:</label>
+    <div class="col-sm-10">
+        <input type="text" ng-model="report.involvement" class="form-control" id="involvement"
+               placeholder="Officer Involvement"/>
+    </div>
+</div>
+<div class="form-group">
+    <label for="isVerified" class="col-sm-2 control-label">Is Verified?</label>
+    <div class="col-sm-10">
+        <input type="text" ng-disabled=true ng-model="report.isVerified" class="form-control" id="isVerified" />
+    </div>
+</div>
+

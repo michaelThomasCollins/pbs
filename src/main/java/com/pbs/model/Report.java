@@ -8,15 +8,17 @@ public abstract class Report {
 	String reportDate= "";
 	Integer officerId;
     String isVerified= "";
+    String reportType = "";
 
 	public Report() { }
 
-    public Report(Integer id, String reportName, String reportDate, Integer officerId, String isVerified) {
+    public Report(Integer id, String reportName, String reportDate, Integer officerId, String isVerified, String reportType) {
         this.id = id;
         this.reportName = reportName;
         this.reportDate = reportDate;
         this.officerId = officerId;
         this.isVerified = isVerified;
+        this.reportType = reportType;
     }
 
     public Integer getId() {

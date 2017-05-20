@@ -5,46 +5,40 @@
     <title>Search For Report</title>
 </head>
 <body>
-<form id="values">
+<form id="values" role="form" ng-submit="searchReports()">
     <div class="reportId">
-        <label><b>Report Id:</b></label>
+        <label for="reportId"><b>Report Id:</b></label>
         <br>
-        <input type="text" name="reportId">
+        <input type="number" ng-model="Report.id" name="reportId" id="reportId">
     </div>
     <br>
 
     <div class="reportDate">
-        <label><b>Report Date:</b></label>
+        <label for="reportDate"><b>Report Date:</b></label>
         <br>
-        <input type="text" name="reportDate">
+        <input type="text" ng-model="Report.reportDate" name="reportDate" id="reportDate">
     </div>
     <br>
 
     <div class="officerId">
-        <label><b>Officer ID:</b></label>
+        <label for="officerId"><b>Officer ID:</b></label>
         <br>
-        <input type="text" name="officerId">
+        <input type="number" ng-model="Report.officerId" name="officerId" id="officerId">
     </div>
     <br>
 
     <div class="reportName">
-        <label><b>Report Name:</b></label>
+        <label for="reportName"><b>Report Name:</b></label>
         <br>
-        <input type="text" name="reportName">
+        <input type="text" ng-model="Report.reportName" name="reportName" id="reportName">
     </div>
     <br>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" class="btn btn-primary" value="Search"/>
+        </div>
+    </div>
 </form>
-<p><a class="btn btn-default" role="button" href="#/reports">Search</a>
-<p>
-
-    <!--<script>-->
-    <!--function enterPressed(e) {-->
-    <!--if (e.which == 13 || e.keyCode == 13) {-->
-    <!--// TODO Return data values-->
-    <!--window.location.href = 'reports.html';-->
-    <!--}-->
-    <!--}-->
-    <!--</script>-->
 
 </body>
 </html>
