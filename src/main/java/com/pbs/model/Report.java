@@ -8,7 +8,7 @@ public abstract class Report {
 	String reportDate= "";
 	Integer officerId;
     String isVerified= "";
-    String reportType = "";
+    String reportType;
 
 	public Report() { }
 

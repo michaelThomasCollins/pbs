@@ -25,10 +25,10 @@ public class ReportStub {
         noActionReports.put(3, c);
 
 //        Investigation Reports
-        Investigation d = new Investigation(1, "Invest 1", "02/02/02", 201, "Stabbing", "Mr_Stab", "My Mum", "Captain Greg", "That's not a knife",
+        Investigation d = new Investigation(4, "Invest 1", "02/02/02", 201, "Stabbing", "Mr_Stab", "My Mum", "Captain Greg", "That's not a knife",
                 "Yes it is", "03/03/03", "Yes");
         investigationReports.put(4, d);
-        Investigation e = new Investigation(2, "Invest 2", "12/04/14", 69, "Public Exposure", "Mr_Fondle", "My Mum", "Rep. Pressed", "That's not a knife",
+        Investigation e = new Investigation(5, "Invest 2", "12/04/14", 69, "Public Exposure", "Mr_Fondle", "My Mum", "Rep. Pressed", "That's not a knife",
                 "It wasn't a knife", "06/09/12", "No");
         investigationReports.put(5, e);
     }
@@ -37,21 +37,23 @@ public class ReportStub {
         // TODO Merge all lists into one, in order to return the correct values
         // TODO Also only return the queried values
         String[] searchCriteria = searchData.split(";");
-        int reportId = 1;
+        // Giving Search criteria default values so that they do not throw a NullPointerException
+        int reportId = -1;
         String reportDate = "";
-        int officerId = 1;
+        int officerId = -1;
         String reportName = "";
         try {
-            if (searchCriteria[0] != null) {
+            if (searchCriteria[0] != null && !searchCriteria[0].equals("undefined")) {
                 reportId = Integer.parseInt(searchCriteria[0]);
             }
             reportDate = searchCriteria[1];
-            if (searchCriteria[2] != null) {
+            if (searchCriteria[2] != null && !searchCriteria[2].equals("undefined")) {
                 officerId = Integer.parseInt(searchCriteria[2]);
             }
             reportName = searchCriteria[3];
         } catch (NumberFormatException e) {
             // Do not
+            System.out.println("Error:> "+e.getMessage());
         }
 
 

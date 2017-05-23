@@ -110,22 +110,16 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
         var officerId = $scope.Report.officerId;
         var reportName = $scope.Report.reportName;
 
-        var searchData = reportId + ';' + reportDate + ';' + officerId + ';' + reportName;
+        sessionStorage.searchData = reportId + ';' + reportDate + ';' + officerId + ';' + reportName;
 
         $state.go('reports');
     };
-    $scope.reports = Search.query({searchData: "1;hi;101;efd"}); //fetch all reports. Issues a GET to /api/vi/reports
-
-//     $scope.searchReport = function () {
-// // TODO Return specific data values
-//         $state.go('reports');
-//         $scope.reports = Report.query(); //fetch all reports. Issues a GET to /api/vi/reports
-//     };
+    $scope.reports = Search.query({searchData: sessionStorage.searchData}); //fetch all reports. Issues a GET to /api/vi/reports
 }).controller('LoginController', function ($scope, $state, $stateParams, $rootScope, User) {
     $scope.verifyUser = function () { //Issues a GET request to /api/v1/users/:id to get a user to verify
-        var uname = $scope.User.userName;
+        var userName = $scope.User.userName;
         var password = $scope.User.password;
-        var userPromise = User.get({userName: uname});
+        var userPromise = User.get({userName: userName});
         userPromise.$promise.then(
             function (answer) {
                 if (answer.password == password) {

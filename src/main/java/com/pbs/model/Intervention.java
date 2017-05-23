@@ -15,6 +15,7 @@ public class Intervention extends Report {
     String event;
     String victims;
     String involvement;
+    String reportType = "intervention";
 
     // This constructor has to be implemented due to weird Spring configuration
     public Intervention() {

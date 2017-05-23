@@ -12,6 +12,7 @@ public class Investigation extends Report {
     String statement;
     String details;
     String dateOccurred;
+    String reportType = "investigation";
 
     // This constructor has to be implemented due to weird Spring configuration
     public Investigation() {
