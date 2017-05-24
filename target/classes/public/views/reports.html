@@ -7,8 +7,9 @@
       <tr ng-repeat="report in reports">
           <td>{{report.reportName}}</td>
           <td>{{report.reportId}}</td>
+          <td>{{report.reportType}}</td>
           <td>
-              <a class="btn btn-primary" ui-sref="viewReport({id:report.id})">View</a>
+              <a class="btn btn-primary" ui-sref="viewReport({reportType:report.reportType, id:report.id})">View</a>
           </td>
       </tr>
   </table>

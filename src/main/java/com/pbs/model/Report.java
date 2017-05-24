@@ -1,6 +1,8 @@
 package com.pbs.model;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Report {
 	Integer id;
@@ -9,6 +11,7 @@ public abstract class Report {
 	Integer officerId;
     String isVerified= "";
     String reportType;
+    Map<String,String> furtherDetails = new HashMap<String, String>();
 
 	public Report() { }
 
@@ -21,7 +24,13 @@ public abstract class Report {
         this.reportType = reportType;
     }
 
-    public Integer getId() {
+    abstract void populateFurtherDetails();
+
+	public Map<String, String> getFurtherDetails() {
+		return furtherDetails;
+	}
+
+	public Integer getId() {
 		return id;
 	}
 

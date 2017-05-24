@@ -9,6 +9,9 @@ import com.pbs.model.Report;
 public class ReportStub {
     private static Map<Integer, NoAction> noActionReports = new HashMap<Integer, NoAction>();
     private static Map<Integer, Investigation> investigationReports = new HashMap<Integer, Investigation>();
+    private static Map<Integer, Investigation> interventionReports = new HashMap<Integer, Investigation>();
+    private static Map<Integer, Investigation> inMotionReports = new HashMap<Integer, Investigation>();
+
 //    private static Map<Integer, NoAction> noActionReports = new HashMap<Integer, NoAction>();
 //    private static Map<Integer, NoAction> noActionReports = new HashMap<Integer, NoAction>();
 
@@ -52,7 +55,7 @@ public class ReportStub {
             }
             reportName = searchCriteria[3];
         } catch (NumberFormatException e) {
-            // Do not
+            // An exception has occurred when trying to parse the search information (I will now detail this message to the console)
             System.out.println("Error:> "+e.getMessage());
         }
 
@@ -83,6 +86,14 @@ public class ReportStub {
         report.setId(idIndex);
         noActionReports.put(idIndex, report);
         return report;
+    }
+
+    public static Report getReport(Integer id) {
+        return investigationReports.get(id);
+    }
+
+    public static Investigation getInvestigation(Integer id) {
+        return investigationReports.get(id);
     }
 
     public static NoAction getNoAction(Integer id) {

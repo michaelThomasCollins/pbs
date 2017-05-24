@@ -17,6 +17,11 @@ public class NoAction extends Report{
     // This constructor has to be implemented due to weird Spring implementation
     public NoAction() { }
 
+    @Override
+    void populateFurtherDetails() {
+
+    }
+
     public NoAction(Integer id, String reportName, String reportDate, Integer officerId, String suspectedCrimes, String persons, String officers, String statement, String details, String isVerified) {
         super(id, reportName, reportDate, officerId, isVerified,"no_action");
         this.suspectedCrimes = suspectedCrimes;

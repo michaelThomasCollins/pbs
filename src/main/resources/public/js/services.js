@@ -2,6 +2,18 @@ angular.module('app.services', []).factory('Report', function ($resource) {
     return $resource('/api/v1/reports/:id', {id: '@id'}, {
         update: {
             method: 'PUT'
+        },
+        getNoAction: {
+            method: 'GET'
+        },
+        getInvestigation: {
+            method: 'GET'
+        },
+        getIntervention: {
+            method: 'GET'
+        },
+        getInMotion: {
+            method: 'GET'
         }
     });
 }).factory('User', function ($resource) {

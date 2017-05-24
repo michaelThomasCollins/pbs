@@ -1,5 +1,23 @@
 angular.module('app.controllers', []).controller('ReportViewController', function ($scope, $state, $stateParams, popupService, $window, $filter, $rootScope, Report) {
-    $scope.report = Report.get({id: $stateParams.id}); //Get a single report.Issues a GET to /api/v1/reports/:id
+
+    $scope.getReport = function () {
+        $scope.report = Report.get({id: $stateParams.id});
+        var reportt = $scope.report;
+        console.log(reportt);
+        // var reportType = "investigation";
+        // if (reportType == "no_action") {
+        //     $scope.report = Report.getNoAction({id: $stateParams.id}); //Get a single report.Issues a GET to /api/v1/reports/:id
+        // } else if (reportType == "investigation") {
+        //     $scope.report = Report.getInvestigation({id: $stateParams.id}); //Get a single report.Issues a GET to /api/v1/reports/:id
+        // } else if (reportType == "intervention") {
+        //     $scope.report = Report.getIntervention({id: $stateParams.id}); //Get a single report.Issues a GET to /api/v1/reports/:id
+        // } else if (reportType == "in_motion") {
+        //     $scope.report = Report.getInMotion({id: $stateParams.id}); //Get a single report.Issues a GET to /api/v1/reports/:id
+        // }
+    };
+
+    // Call this method on controller startup so that we have the desired report to be viewed
+    $scope.getReport();
 
     $scope.deleteReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
         if (sessionStorage.getItem('permissions') == "Officer") {
@@ -37,7 +55,6 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
         }
     };
     $scope.getReportType = function () {
-
         return 'views/_' + $scope.report.reportType + '_form.html';
     };
     $scope.getPermissions = function () {
@@ -52,7 +69,7 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
         });
     };
 
-    $scope.getReportType = function () {
+    $scope.getReportType1 = function () {
         return 'views/_' + $scope.report.reportType + '_form.html';
     };
     $scope.getPermissions = function () {
@@ -70,7 +87,7 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
     };
 
     $scope.getPermissions = function () {
-      return sessionStorage.getItem('permissions')
+        return sessionStorage.getItem('permissions')
     };
 
     $scope.loadReport = function () { //Issues a GET request to /api/v1/reports/:id to get a report to update
@@ -104,7 +121,7 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
 }).controller('ReportSearchController', function ($scope, $state, $stateParams, Search, Report) {
     //TODO Write a method to verify users credentials
 
-    $scope.searchReports = function(){
+    $scope.searchReports = function () {
         var reportId = $scope.Report.id;
         var reportDate = $scope.Report.reportDate;
         var officerId = $scope.Report.officerId;
@@ -141,7 +158,7 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
     };
 
     $scope.logOut = function () {
-      sessionStorage.clear();
-      $state.go('login')
+        sessionStorage.clear();
+        $state.go('login')
     };
 });

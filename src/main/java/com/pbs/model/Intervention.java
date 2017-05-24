@@ -21,6 +21,11 @@ public class Intervention extends Report {
     public Intervention() {
     }
 
+    @Override
+    void populateFurtherDetails() {
+
+    }
+
     public Intervention(Integer id, String reportName, String reportDate, Integer officerId,
                         String isVerified, String reportType, String suspectedCrimes, String suspects,
                         String witnesses, String officers, String statement, String details, String dateOccurred,

@@ -1,5 +1,6 @@
 package com.pbs.controller;
 
+import com.pbs.model.Investigation;
 import com.pbs.model.NoAction;
 import com.pbs.model.Report;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -33,13 +34,23 @@ public class ReportController {
         return ReportStub.createNoAction(report);
     }
 
-    /*
-
-     */
     @RequestMapping(value = "reports/{id}", method = RequestMethod.GET)
-    public NoAction get(@PathVariable Integer id) {
-        return ReportStub.getNoAction(id);
+    public Report get(@PathVariable Integer id) {
+        return ReportStub.getReport(id);
     }
+
+//    /*
+//
+//     */
+//    @RequestMapping(value = "reports/{id}", method = RequestMethod.GET)
+//    public Investigation getInvestigation(@PathVariable Integer id) {
+//        return ReportStub.getInvestigation(id);
+//    }
+
+//    @RequestMapping(value = "reports/{id}", method = RequestMethod.GET)
+//    public NoAction getNoAction(@PathVariable Integer id) {
+//        return ReportStub.getNoAction(id);
+//    }
 
     @RequestMapping(value = "reports/{id}", method = RequestMethod.PUT)
     public NoAction update(@PathVariable Integer id, @RequestBody NoAction report) {
