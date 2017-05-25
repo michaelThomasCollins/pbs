@@ -1,5 +1,7 @@
 package com.pbs.model;
 
+import com.pbs.Constants.Constants;
+
 import java.util.Date;
 
 /**
@@ -17,11 +19,6 @@ public class NoAction extends Report{
     // This constructor has to be implemented due to weird Spring implementation
     public NoAction() { }
 
-    @Override
-    void populateFurtherDetails() {
-
-    }
-
     public NoAction(Integer id, String reportName, String reportDate, Integer officerId, String suspectedCrimes, String persons, String officers, String statement, String details, String isVerified) {
         super(id, reportName, reportDate, officerId, isVerified,"no_action");
         this.suspectedCrimes = suspectedCrimes;
@@ -29,6 +26,17 @@ public class NoAction extends Report{
         this.officers = officers;
         this.statement = statement;
         this.details = details;
+
+        populateFurtherDetails();
+    }
+
+    @Override
+    void populateFurtherDetails() {
+        furtherDetails.put(Constants.SUSPECTED_CRIMES, getSuspectedCrimes());
+        furtherDetails.put(Constants.DETAILS, details);
+        furtherDetails.put(Constants.OFFICERS, officers);
+        furtherDetails.put(Constants.REPORT_TYPE, reportType);
+        furtherDetails.put(Constants.STATEMENT, statement);
     }
 
     public String getSuspectedCrimes() {

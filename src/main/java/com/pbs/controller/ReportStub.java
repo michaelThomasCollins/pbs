@@ -12,6 +12,9 @@ public class ReportStub {
     private static Map<Integer, Investigation> interventionReports = new HashMap<Integer, Investigation>();
     private static Map<Integer, Investigation> inMotionReports = new HashMap<Integer, Investigation>();
 
+    private static Map<Integer, Report> reportMap = new HashMap<Integer, Report>();
+
+
 //    private static Map<Integer, NoAction> noActionReports = new HashMap<Integer, NoAction>();
 //    private static Map<Integer, NoAction> noActionReports = new HashMap<Integer, NoAction>();
 
@@ -21,19 +24,19 @@ public class ReportStub {
     static {
 //        NoAction Reports
         NoAction a = new NoAction(1, "First Report", "02/06/2016", 200, "arse-on", "Frank Duffy", "Oof", "It Wasn't me", "It was him", "Yes");
-        noActionReports.put(1, a);
+        reportMap.put(1, a);
         NoAction b = new NoAction(2, "Second Report", "01/02/2013", 80, "murder", "Michael Collins", "Thud", "I'll Kill Again", "He's got a knife!", "No");
-        noActionReports.put(2, b);
+        reportMap.put(2, b);
         NoAction c = new NoAction(3, "Third Report", "11/03/2007", 50, "robbery", "James Johnson", "Tiny", "I would've gotten away with it if it wasn't for you pesky kids!", "No scooby snacks", "Yes");
-        noActionReports.put(3, c);
+        reportMap.put(3, c);
 
 //        Investigation Reports
         Investigation d = new Investigation(4, "Invest 1", "02/02/02", 201, "Stabbing", "Mr_Stab", "My Mum", "Captain Greg", "That's not a knife",
                 "Yes it is", "03/03/03", "Yes");
-        investigationReports.put(4, d);
+        reportMap.put(4, d);
         Investigation e = new Investigation(5, "Invest 2", "12/04/14", 69, "Public Exposure", "Mr_Fondle", "My Mum", "Rep. Pressed", "That's not a knife",
                 "It wasn't a knife", "06/09/12", "No");
-        investigationReports.put(5, e);
+        reportMap.put(5, e);
     }
 
     public static List<Report> list(String searchData) {
@@ -61,8 +64,7 @@ public class ReportStub {
 
 
         List<Report> reports = new ArrayList<Report>();
-        reports.addAll(noActionReports.values());
-        reports.addAll(investigationReports.values());
+        reports.addAll(reportMap.values());
         List<Report> selectedReports = new ArrayList<Report>();
         for (Report report : reports) {
             if (report.getId() == reportId) {
@@ -81,31 +83,23 @@ public class ReportStub {
         return new ArrayList<Report>(selectedReports);
     }
 
-    public static NoAction createNoAction(NoAction report) {
+    public static Report create(Report report) {
         idIndex = idIndex + 1;
         report.setId(idIndex);
-        noActionReports.put(idIndex, report);
+        reportMap.put(idIndex, report);
         return report;
     }
 
     public static Report getReport(Integer id) {
-        return investigationReports.get(id);
+        return reportMap.get(id);
     }
 
-    public static Investigation getInvestigation(Integer id) {
-        return investigationReports.get(id);
-    }
-
-    public static NoAction getNoAction(Integer id) {
-        return noActionReports.get(id);
-    }
-
-    public static NoAction updateNoAction(Integer id, NoAction report) {
-        noActionReports.put(id, report);
+    public static Report updateReport(Integer id, Report report) {
+        reportMap.put(id, report);
         return report;
     }
 
     public static Report deleteNoAction(Integer id) {
-        return noActionReports.remove(id);
+        return reportMap.remove(id);
     }
 }

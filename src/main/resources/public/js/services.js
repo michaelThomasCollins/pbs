@@ -1,19 +1,41 @@
 angular.module('app.services', []).factory('Report', function ($resource) {
-    return $resource('/api/v1/reports/:id', {id: '@id'}, {
+    var base = '/api/v1/reports';
+    return $resource('/api/v1/reports', {id: '@id', type: '@type'}, {
         update: {
+            url: base + '/:id',
+            id: '@id',
             method: 'PUT'
         },
-        getNoAction: {
+        get: {
+            url: base + '/:id',
+            id: '@id',
             method: 'GET'
         },
-        getInvestigation: {
-            method: 'GET'
+        save: {
+            url: base + '/:id',
+            id: '@id',
+            method: 'POST'
         },
-        getIntervention: {
-            method: 'GET'
+        query: {
+            url: base + '/:id',
+            id: '@id',
+            method: 'GET',
+            isArray: true
         },
-        getInMotion: {
-            method: 'GET'
+        remove: {
+            url: base + '/:id',
+            id: '@id',
+            method: 'DELETE'
+        },
+        delete: {
+            url: base + '/:id',
+            id: '@id',
+            method: 'DELETE'
+        },
+        newReport: {
+            url: base + '/:type',
+            type: '@type',
+            method: 'POST'
         }
     });
 }).factory('User', function ($resource) {

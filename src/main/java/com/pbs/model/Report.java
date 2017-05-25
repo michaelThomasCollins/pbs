@@ -1,9 +1,15 @@
 package com.pbs.model;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+//@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.WRAPPER_OBJECT, property = "@id")
+//@JsonSubTypes({ @JsonSubTypes.Type(value = Investigation.class, name = "investigation"),            @JsonSubTypes.Type(value = Report.class, name = "reportType"),
+//})
 public abstract class Report {
 	Integer id;
 	String reportName = "";
@@ -62,7 +68,15 @@ public abstract class Report {
 		this.officerId = officerId;
 	}
 
-    public String getIsVerified() {
+	public String getReportType() {
+		return reportType;
+	}
+
+	public void setReportType(String reportType) {
+		this.reportType = reportType;
+	}
+
+	public String getIsVerified() {
         return isVerified;
     }
 

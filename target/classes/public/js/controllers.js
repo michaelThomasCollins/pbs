@@ -60,22 +60,49 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
     $scope.getPermissions = function () {
         return sessionStorage.getItem('permissions')
     };
-}).controller('ReportCreateController', function ($scope, $state, $stateParams, NoAction) {
-    $scope.report = new NoAction();  //create new report instance. Properties will be set via ng-model on UI
-    $scope.report.reportType = sessionStorage.newReportType;
+}).controller('ReportCreateController', function ($scope, $state, $stateParams, Report) {
+    $scope.report = new Report();  //create new report instance. Properties will be set via ng-model on UI
+    // $scope.report.reportType = sessionStorage.newReportType;
+
+    // $scope.getReport = function () {
+    //     var reportType = sessionStorage.newReportType;
+    //     if (reportType == "no_action") {
+    //         // $scope.report = new NoAction();
+    //     } else if (reportType == "investigation") {
+    //         // $scope.report = new Investigation();
+    //     } else if (reportType == "intervention") {
+    //         // $scope.report = new Intervention();
+    //     } else if (reportType == "in_motion") {
+    //         // $scope.report = new InMotion();
+    //     } else {
+    //         $scope.report = new Report();
+    //     }
+    // };
+
+    // Call this method on controller startup so that we have the desired report to be viewed
+    // $scope.getReport();
+
     $scope.addReport = function () { //create a new report. Issues a POST to /api/v1/reports
-        $scope.report.$save(function () {
+        // $scope.report.newReport.newReport(function () {
+        //     $state.go('home'); // on success go back to the home page
+        // });
+        $scope.report.$newReport({type: sessionStorage.newReportType}, function(response){
             $state.go('home'); // on success go back to the home page
+            console.log('success', response);
         });
+
     };
 
-    $scope.getReportType1 = function () {
-        return 'views/_' + $scope.report.reportType + '_form.html';
-    };
     $scope.getPermissions = function () {
         return sessionStorage.getItem('permissions')
     };
+
+    $scope.getReportType = function () {
+        return 'views/_' + sessionStorage.newReportType + '_form.html';
+    };
 }).controller('ReportEditController', function ($scope, $state, $stateParams, $rootScope, Report) {
+    $scope.report = new Report();  //create new report instance. Properties will be set via ng-model on UI
+
     $scope.updateReport = function () { //Update the edited report. Issues a PUT to /api/v1/reports/:id
         $scope.report.$update(function () {
             $state.go('reports'); // on success go back to the home page
@@ -120,6 +147,7 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
 
 }).controller('ReportSearchController', function ($scope, $state, $stateParams, Search, Report) {
     //TODO Write a method to verify users credentials
+    $scope.report = new Report();
 
     $scope.searchReports = function () {
         var reportId = $scope.Report.id;

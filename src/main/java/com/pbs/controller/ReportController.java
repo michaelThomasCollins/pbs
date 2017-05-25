@@ -30,8 +30,18 @@ public class ReportController {
         Create a Report and save into the system
      */
     @RequestMapping(value = "reports", method = RequestMethod.POST)
-    public NoAction create(@RequestBody NoAction report) {
-        return ReportStub.createNoAction(report);
+    public Report create(@RequestBody Report report) {
+        return ReportStub.create(report);
+    }
+
+    @RequestMapping(value = "reports/no_action", method = RequestMethod.POST)
+    public Report create(@RequestBody NoAction report) {
+        return ReportStub.create(report);
+    }
+
+    @RequestMapping(value = "reports/investigation", method = RequestMethod.POST)
+    public Report create(@RequestBody Investigation report) {
+        return ReportStub.create(report);
     }
 
     @RequestMapping(value = "reports/{id}", method = RequestMethod.GET)
@@ -39,22 +49,9 @@ public class ReportController {
         return ReportStub.getReport(id);
     }
 
-//    /*
-//
-//     */
-//    @RequestMapping(value = "reports/{id}", method = RequestMethod.GET)
-//    public Investigation getInvestigation(@PathVariable Integer id) {
-//        return ReportStub.getInvestigation(id);
-//    }
-
-//    @RequestMapping(value = "reports/{id}", method = RequestMethod.GET)
-//    public NoAction getNoAction(@PathVariable Integer id) {
-//        return ReportStub.getNoAction(id);
-//    }
-
     @RequestMapping(value = "reports/{id}", method = RequestMethod.PUT)
-    public NoAction update(@PathVariable Integer id, @RequestBody NoAction report) {
-        return ReportStub.updateNoAction(id, report);
+    public Report update(@PathVariable Integer id, @RequestBody NoAction report) {
+        return ReportStub.updateReport(id, report);
     }
 
     @RequestMapping(value = "reports/{id}", method = RequestMethod.DELETE)

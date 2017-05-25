@@ -1,5 +1,7 @@
 package com.pbs.model;
 
+import com.pbs.Constants.Constants;
+
 /**
  * Created by Michael on 09/05/2017.
  */
@@ -21,11 +23,6 @@ public class Intervention extends Report {
     public Intervention() {
     }
 
-    @Override
-    void populateFurtherDetails() {
-
-    }
-
     public Intervention(Integer id, String reportName, String reportDate, Integer officerId,
                         String isVerified, String reportType, String suspectedCrimes, String suspects,
                         String witnesses, String officers, String statement, String details, String dateOccurred,
@@ -41,6 +38,21 @@ public class Intervention extends Report {
         this.event = event;
         this.victims = victims;
         this.involvement = involvement;
+    }
+
+    @Override
+    void populateFurtherDetails() {
+        furtherDetails.put(Constants.SUSPECTED_CRIMES, suspectedCrimes);
+        furtherDetails.put(Constants.DATE_OCCURRED, dateOccurred);
+        furtherDetails.put(Constants.DETAILS, details);
+        furtherDetails.put(Constants.OFFICERS, officers);
+        furtherDetails.put(Constants.REPORT_TYPE, reportType);
+        furtherDetails.put(Constants.STATEMENT, statement);
+        furtherDetails.put(Constants.SUSPECTS, suspects);
+        furtherDetails.put(Constants.WITNESSES, witnesses);
+        furtherDetails.put(Constants.INVOLVEMENT, involvement);
+        furtherDetails.put(Constants.EVENT, event);
+        furtherDetails.put(Constants.VICTIMS, victims);
     }
 
     public String getSuspectedCrimes() {
