@@ -74,6 +74,9 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
         $scope.report.$update({type: $scope.report.reportType}, function (response) {
             $state.go('reports'); // on success go back to the home page
             console.log('success', response);
+        }, function (error) {
+            console.log('Error:> ' + error);
+            alert('Error Updating Report');
         });
     };
 
@@ -114,7 +117,6 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
     };
 
 }).controller('ReportSearchController', function ($scope, $state, $stateParams, Search, Report) {
-    //TODO Write a method to verify users credentials
     $scope.report = new Report();
 
     $scope.searchReports = function () {

@@ -15,7 +15,7 @@ import java.util.Map;
 public class UserStub {
     private static Map<String, User> users = new HashMap<String, User>();
 
-    //populate initial users
+    //populate initial "Stubbed" users
     static {
         String uname1="Michael_Collins";
         String uname2="Frank_Duffy";

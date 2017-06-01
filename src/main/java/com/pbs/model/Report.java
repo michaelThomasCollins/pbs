@@ -23,7 +23,10 @@ public abstract class Report {
         this.reportType = reportType;
     }
 
-    abstract void populateFurtherDetails();
+	/**
+	 *
+	 */
+	abstract void populateFurtherDetails();
 
 	public Map<String, String> getFurtherDetails() {
 		return furtherDetails;
@@ -41,39 +44,20 @@ public abstract class Report {
 		return reportName;
 	}
 
-	public void setReportName(String reportName) {
-		this.reportName = reportName;
-	}
-
 	public String getReportDate() {
 		return reportDate;
-	}
-
-	public void setReportDate(String reportDate) {
-		this.reportDate = reportDate;
 	}
 
 	public Integer getOfficerId() {
 		return officerId;
 	}
 
-	public void setOfficerId(Integer officerId) {
-		this.officerId = officerId;
-	}
-
 	public String getReportType() {
 		return reportType;
-	}
-
-	public void setReportType(String reportType) {
-		this.reportType = reportType;
 	}
 
 	public String getIsVerified() {
         return isVerified;
     }
 
-    public void setIsVerified(String verified) {
-        isVerified = verified;
-    }
 }

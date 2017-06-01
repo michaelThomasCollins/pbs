@@ -13,6 +13,9 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
             if (popupService.showPopup('Really delete this?')) {
                 report.$delete(function () {
                     $state.go('reports');
+                }, function (error) {
+                    console.log('Error:> ' + error); // On error alert the user that the function never executed properly
+                    alert('Error Deleting Report');
                 });
             }
         } else {
@@ -25,6 +28,9 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
             if (popupService.showPopup('Are you sure?')) {
                 report.isVerified = "Yes";
                 $scope.report.$update(function () {
+                }, function (error) {
+                    console.log('Error:> ' + error); // On error alert the user that the function never executed properly
+                    alert('Error Updating Report');
                 });
             }
         } else {
@@ -37,6 +43,9 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
             if (popupService.showPopup('Are you sure?')) {
                 report.isVerified = "No";
                 $scope.report.$update(function () {
+                }, function (error) {
+                    console.log('Error:> ' + error); // On error alert the user that the function never executed properly
+                    alert('Error Updating Report');
                 });
             }
         } else {
@@ -56,6 +65,9 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
         $scope.report.$newReport({type: sessionStorage.newReportType}, function(response){
             $state.go('home'); // on success go back to the home page
             console.log('success', response);
+        }, function (error) {
+            console.log('Error:> ' + error); // On error alert the user that the function never executed properly
+            alert('Error Creating Report');
         });
 
     };
@@ -74,6 +86,9 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
         $scope.report.$update({type: $scope.report.reportType}, function (response) {
             $state.go('reports'); // on success go back to the home page
             console.log('success', response);
+        }, function (error) {
+            console.log('Error:> ' + error); // On error alert the user that the function never executed properly
+            alert('Error Updating Report');
         });
     };
 
@@ -114,7 +129,6 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
     };
 
 }).controller('ReportSearchController', function ($scope, $state, $stateParams, Search, Report) {
-    //TODO Write a method to verify users credentials
     $scope.report = new Report();
 
     $scope.searchReports = function () {

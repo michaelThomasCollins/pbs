@@ -24,7 +24,7 @@ public class InMotion extends Report {
     }
 
     public InMotion(Integer id, String reportName, String reportDate, Integer officerId,
-                    String isVerified, String reportType, String courtDate, String convicted,
+                    String isVerified, String courtDate, String convicted,
                     String statement, String victims, String crimeLoc, String dateOccurred, String arrestLoc,
                     String charges, String involvement, String officers) {
         super(id, reportName, reportDate, officerId, isVerified, "in_motion");
@@ -38,101 +38,63 @@ public class InMotion extends Report {
         this.charges = charges;
         this.involvement = involvement;
         this.officers = officers;
+
+        populateFurtherDetails();
     }
 
     @Override
     void populateFurtherDetails() {
-        furtherDetails.put(Constants.COURT_DATE, courtDate);
-        furtherDetails.put(Constants.CONVICTED_PERSONS, convicted);
-        furtherDetails.put(Constants.STATEMENT, statement);
-        furtherDetails.put(Constants.VICTIMS, victims);
-        furtherDetails.put(Constants.CRIME_LOC, crimeLoc);
-        furtherDetails.put(Constants.DATE_OCCURRED, dateOccurred);
-        furtherDetails.put(Constants.ARREST_LOC, arrestLoc);
-        furtherDetails.put(Constants.CHARGES, charges);
-        furtherDetails.put(Constants.INVOLVEMENT, involvement);
-        furtherDetails.put(Constants.OFFICERS, officers);
-        furtherDetails.put(Constants.REPORT_TYPE, reportType);
+        furtherDetails.put(Constants.COURT_DATE, getCourtDate());
+        furtherDetails.put(Constants.CONVICTED_PERSONS, getConvicted());
+        furtherDetails.put(Constants.STATEMENT, getStatement());
+        furtherDetails.put(Constants.VICTIMS, getVictims());
+        furtherDetails.put(Constants.CRIME_LOC, getCrimeLoc());
+        furtherDetails.put(Constants.DATE_OCCURRED, getDateOccurred());
+        furtherDetails.put(Constants.ARREST_LOC, getArrestLoc());
+        furtherDetails.put(Constants.CHARGES, getCharges());
+        furtherDetails.put(Constants.INVOLVEMENT, getInvolvement());
+        furtherDetails.put(Constants.OFFICERS, getOfficers());
+        furtherDetails.put(Constants.REPORT_TYPE, getReportType());
     }
 
     public String getCourtDate() {
         return courtDate;
     }
 
-    public void setCourtDate(String courtDate) {
-        this.courtDate = courtDate;
-    }
-
     public String getConvicted() {
         return convicted;
-    }
-
-    public void setConvicted(String convicted) {
-        this.convicted = convicted;
     }
 
     public String getStatement() {
         return statement;
     }
 
-    public void setStatement(String statement) {
-        this.statement = statement;
-    }
-
     public String getVictims() {
         return victims;
-    }
-
-    public void setVictims(String victims) {
-        this.victims = victims;
     }
 
     public String getCrimeLoc() {
         return crimeLoc;
     }
 
-    public void setCrimeLoc(String crimeLoc) {
-        this.crimeLoc = crimeLoc;
-    }
-
     public String getDateOccurred() {
         return dateOccurred;
-    }
-
-    public void setDateOccurred(String dateOccurred) {
-        this.dateOccurred = dateOccurred;
     }
 
     public String getArrestLoc() {
         return arrestLoc;
     }
 
-    public void setArrestLoc(String arrestLoc) {
-        this.arrestLoc = arrestLoc;
-    }
-
     public String getCharges() {
         return charges;
-    }
-
-    public void setCharges(String charges) {
-        this.charges = charges;
     }
 
     public String getInvolvement() {
         return involvement;
     }
 
-    public void setInvolvement(String involvement) {
-        this.involvement = involvement;
-    }
-
     public String getOfficers() {
         return officers;
-    }
-
-    public void setOfficers(String officers) {
-        this.officers = officers;
     }
 
     @Override
@@ -140,8 +102,4 @@ public class InMotion extends Report {
         return reportType;
     }
 
-    @Override
-    public void setReportType(String reportType) {
-        this.reportType = reportType;
-    }
 }

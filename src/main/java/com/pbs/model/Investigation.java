@@ -21,7 +21,7 @@ public class Investigation extends Report {
     }
 
     public Investigation(Integer id, String reportName, String reportDate, Integer officerId,
-                         String suspectedCrimes, String suspects, String witnesses,String officers, String statement,
+                         String suspectedCrimes, String suspects, String witnesses, String officers, String statement,
                          String details, String dateOccurred, String isVerified) {
         super(id, reportName, reportDate, officerId, isVerified, "investigation");
         this.suspectedCrimes = suspectedCrimes;
@@ -50,65 +50,35 @@ public class Investigation extends Report {
         return suspectedCrimes;
     }
 
-    public void setSuspectedCrimes(String suspectedCrimes) {
-        this.suspectedCrimes = suspectedCrimes;
-    }
-
     public String getSuspects() {
         return suspects;
-    }
-
-    public void setSuspects(String suspects) {
-        this.suspects = suspects;
     }
 
     public String getWitnesses() {
         return witnesses;
     }
 
-    public void setWitnesses(String witnesses) {
-        this.witnesses = witnesses;
-    }
-
     public String getOfficers() {
         return officers;
-    }
-
-    public void setOfficers(String officers) {
-        this.officers = officers;
     }
 
     public String getStatement() {
         return statement;
     }
 
-    public void setStatement(String statement) {
-        this.statement = statement;
-    }
-
     public String getDetails() {
         return details;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
-    }
 
     public String getDateOccurred() {
         return dateOccurred;
     }
 
-    public void setDateOccurred(String dateOccurred) {
-        this.dateOccurred = dateOccurred;
-    }
 
     @Override
     public String getReportType() {
         return reportType;
     }
 
-    @Override
-    public void setReportType(String reportType) {
-        this.reportType = reportType;
-    }
 }
