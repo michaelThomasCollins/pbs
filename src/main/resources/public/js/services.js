@@ -2,7 +2,7 @@ angular.module('app.services', []).factory('Report', function ($resource) {
     var base = '/api/v1/reports';
     return $resource('/api/v1/reports', {id: '@id', type: '@type'}, {
         update: {
-            url: base + '/:id',
+            url: base + '/:id' + '/:type',
             id: '@id',
             method: 'PUT'
         },

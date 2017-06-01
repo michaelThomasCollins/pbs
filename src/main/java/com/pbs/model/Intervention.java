@@ -7,17 +7,17 @@ import com.pbs.Constants.Constants;
  */
 public class Intervention extends Report {
 
-    String suspectedCrimes;
-    String suspects;
-    String witnesses;
-    String officers;
-    String statement;
-    String details;
-    String dateOccurred;
-    String event;
-    String victims;
-    String involvement;
-    String reportType = "intervention";
+    private String suspectedCrimes;
+    private String suspects;
+    private String witnesses;
+    private String officers;
+    private String statement;
+    private String details;
+    private String dateOccurred;
+    private String event;
+    private String victims;
+    private String involvement;
+    private String reportType = "intervention";
 
     // This constructor has to be implemented due to weird Spring configuration
     public Intervention() {
@@ -27,7 +27,7 @@ public class Intervention extends Report {
                         String isVerified, String reportType, String suspectedCrimes, String suspects,
                         String witnesses, String officers, String statement, String details, String dateOccurred,
                         String event, String victims, String involvement) {
-        super(id, reportName, reportDate, officerId, isVerified, reportType);
+        super(id, reportName, reportDate, officerId, isVerified, "intervention");
         this.suspectedCrimes = suspectedCrimes;
         this.suspects = suspects;
         this.witnesses = witnesses;
@@ -42,17 +42,17 @@ public class Intervention extends Report {
 
     @Override
     void populateFurtherDetails() {
-        furtherDetails.put(Constants.SUSPECTED_CRIMES, suspectedCrimes);
-        furtherDetails.put(Constants.DATE_OCCURRED, dateOccurred);
-        furtherDetails.put(Constants.DETAILS, details);
-        furtherDetails.put(Constants.OFFICERS, officers);
-        furtherDetails.put(Constants.REPORT_TYPE, reportType);
-        furtherDetails.put(Constants.STATEMENT, statement);
-        furtherDetails.put(Constants.SUSPECTS, suspects);
-        furtherDetails.put(Constants.WITNESSES, witnesses);
-        furtherDetails.put(Constants.INVOLVEMENT, involvement);
-        furtherDetails.put(Constants.EVENT, event);
-        furtherDetails.put(Constants.VICTIMS, victims);
+        furtherDetails.put(Constants.SUSPECTED_CRIMES, getSuspectedCrimes());
+        furtherDetails.put(Constants.DATE_OCCURRED, getDateOccurred());
+        furtherDetails.put(Constants.DETAILS, getDetails());
+        furtherDetails.put(Constants.OFFICERS, getOfficers());
+        furtherDetails.put(Constants.REPORT_TYPE, getReportType());
+        furtherDetails.put(Constants.STATEMENT, getStatement());
+        furtherDetails.put(Constants.SUSPECTS, getSuspects());
+        furtherDetails.put(Constants.WITNESSES, getWitnesses());
+        furtherDetails.put(Constants.INVOLVEMENT, getInvolvement());
+        furtherDetails.put(Constants.EVENT, getEvent());
+        furtherDetails.put(Constants.VICTIMS, getVictims());
     }
 
     public String getSuspectedCrimes() {

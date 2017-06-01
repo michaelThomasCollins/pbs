@@ -2,18 +2,7 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
 
     $scope.getReport = function () {
         $scope.report = Report.get({id: $stateParams.id});
-        var reportt = $scope.report;
-        console.log(reportt);
-        // var reportType = "investigation";
-        // if (reportType == "no_action") {
-        //     $scope.report = Report.getNoAction({id: $stateParams.id}); //Get a single report.Issues a GET to /api/v1/reports/:id
-        // } else if (reportType == "investigation") {
-        //     $scope.report = Report.getInvestigation({id: $stateParams.id}); //Get a single report.Issues a GET to /api/v1/reports/:id
-        // } else if (reportType == "intervention") {
-        //     $scope.report = Report.getIntervention({id: $stateParams.id}); //Get a single report.Issues a GET to /api/v1/reports/:id
-        // } else if (reportType == "in_motion") {
-        //     $scope.report = Report.getInMotion({id: $stateParams.id}); //Get a single report.Issues a GET to /api/v1/reports/:id
-        // }
+        console.log("Report loaded: " + $scope.report);
     };
 
     // Call this method on controller startup so that we have the desired report to be viewed
@@ -62,30 +51,8 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
     };
 }).controller('ReportCreateController', function ($scope, $state, $stateParams, Report) {
     $scope.report = new Report();  //create new report instance. Properties will be set via ng-model on UI
-    // $scope.report.reportType = sessionStorage.newReportType;
-
-    // $scope.getReport = function () {
-    //     var reportType = sessionStorage.newReportType;
-    //     if (reportType == "no_action") {
-    //         // $scope.report = new NoAction();
-    //     } else if (reportType == "investigation") {
-    //         // $scope.report = new Investigation();
-    //     } else if (reportType == "intervention") {
-    //         // $scope.report = new Intervention();
-    //     } else if (reportType == "in_motion") {
-    //         // $scope.report = new InMotion();
-    //     } else {
-    //         $scope.report = new Report();
-    //     }
-    // };
-
-    // Call this method on controller startup so that we have the desired report to be viewed
-    // $scope.getReport();
 
     $scope.addReport = function () { //create a new report. Issues a POST to /api/v1/reports
-        // $scope.report.newReport.newReport(function () {
-        //     $state.go('home'); // on success go back to the home page
-        // });
         $scope.report.$newReport({type: sessionStorage.newReportType}, function(response){
             $state.go('home'); // on success go back to the home page
             console.log('success', response);
@@ -104,8 +71,9 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
     $scope.report = new Report();  //create new report instance. Properties will be set via ng-model on UI
 
     $scope.updateReport = function () { //Update the edited report. Issues a PUT to /api/v1/reports/:id
-        $scope.report.$update(function () {
+        $scope.report.$update({type: $scope.report.reportType}, function (response) {
             $state.go('reports'); // on success go back to the home page
+            console.log('success', response);
         });
     };
 
@@ -122,7 +90,7 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
     };
 
     $scope.loadReport(); // Load a report which can be edited on UI
-}).controller('ChooseReportTypeController', function ($scope, $state, $stateParams, $rootScope) {
+}).controller('ChooseReportTypeController', function ($scope, $state) {
 
     $scope.chooseReport = function () {
         //TODO Could improve this code here, see editShipwreck({id:shipwreck.id}) formatting

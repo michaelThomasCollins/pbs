@@ -7,14 +7,14 @@ import com.pbs.Constants.Constants;
  */
 public class Investigation extends Report {
 
-    String suspectedCrimes;
-    String suspects;
-    String witnesses;
-    String officers;
-    String statement;
-    String details;
-    String dateOccurred;
-    String reportType = "investigation";
+    private String suspectedCrimes;
+    private String suspects;
+    private String witnesses;
+    private String officers;
+    private String statement;
+    private String details;
+    private String dateOccurred;
+    private String reportType = "investigation";
 
     // This constructor has to be implemented due to weird Spring configuration
     public Investigation() {
@@ -36,14 +36,14 @@ public class Investigation extends Report {
 
     @Override
     void populateFurtherDetails() {
-        furtherDetails.put(Constants.SUSPECTED_CRIMES, suspectedCrimes);
-        furtherDetails.put(Constants.DATE_OCCURRED, dateOccurred);
-        furtherDetails.put(Constants.DETAILS, details);
-        furtherDetails.put(Constants.OFFICERS, officers);
-        furtherDetails.put(Constants.REPORT_TYPE, reportType);
-        furtherDetails.put(Constants.STATEMENT, statement);
-        furtherDetails.put(Constants.SUSPECTS, suspects);
-        furtherDetails.put(Constants.WITNESSES, witnesses);
+        furtherDetails.put(Constants.SUSPECTED_CRIMES, getSuspectedCrimes());
+        furtherDetails.put(Constants.DATE_OCCURRED, getDateOccurred());
+        furtherDetails.put(Constants.DETAILS, getDetails());
+        furtherDetails.put(Constants.OFFICERS, getOfficers());
+        furtherDetails.put(Constants.REPORT_TYPE, getReportType());
+        furtherDetails.put(Constants.STATEMENT, getStatement());
+        furtherDetails.put(Constants.SUSPECTS, getSuspects());
+        furtherDetails.put(Constants.WITNESSES, getWitnesses());
     }
 
     public String getSuspectedCrimes() {
@@ -62,12 +62,20 @@ public class Investigation extends Report {
         this.suspects = suspects;
     }
 
+    public String getWitnesses() {
+        return witnesses;
+    }
+
+    public void setWitnesses(String witnesses) {
+        this.witnesses = witnesses;
+    }
+
     public String getOfficers() {
         return officers;
     }
 
-    public void setOfficers(String longitude) {
-        this.officers = longitude;
+    public void setOfficers(String officers) {
+        this.officers = officers;
     }
 
     public String getStatement() {
@@ -86,7 +94,21 @@ public class Investigation extends Report {
         this.details = details;
     }
 
+    public String getDateOccurred() {
+        return dateOccurred;
+    }
+
+    public void setDateOccurred(String dateOccurred) {
+        this.dateOccurred = dateOccurred;
+    }
+
+    @Override
     public String getReportType() {
         return reportType;
+    }
+
+    @Override
+    public void setReportType(String reportType) {
+        this.reportType = reportType;
     }
 }

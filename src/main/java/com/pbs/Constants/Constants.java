@@ -15,4 +15,9 @@ public class Constants {
     public static String EVENT = "EVENT";
     public static String VICTIMS = "VICTIMS";
     public static String INVOLVEMENT = "INVOLVEMENT";
+    public static String COURT_DATE = "COURT_DATE";
+    public static String CRIME_LOC = "CRIME_LOC";
+    public static String ARREST_LOC = "ARREST_LOC";
+    public static String CHARGES = "CHARGES";
+    public static String CONVICTED_PERSONS = "CONVICTED_PERSONS";
 }

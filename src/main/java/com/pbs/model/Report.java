@@ -1,23 +1,16 @@
 package com.pbs.model;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-//@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.WRAPPER_OBJECT, property = "@id")
-//@JsonSubTypes({ @JsonSubTypes.Type(value = Investigation.class, name = "investigation"),            @JsonSubTypes.Type(value = Report.class, name = "reportType"),
-//})
 public abstract class Report {
-	Integer id;
-	String reportName = "";
-	String reportDate= "";
-	Integer officerId;
-    String isVerified= "";
-    String reportType;
-    Map<String,String> furtherDetails = new HashMap<String, String>();
+	private Integer id;
+	private String reportName = "";
+	private String reportDate= "";
+	private Integer officerId;
+	private String isVerified= "";
+	private String reportType;
+	Map<String,String> furtherDetails = new HashMap<String, String>();
 
 	public Report() { }
 

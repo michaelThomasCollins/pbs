@@ -6,35 +6,35 @@
 <div class="form-group" >
     <label for="suspectedCrimes" class="col-sm-2 control-label">Suspected Crime(s):</label>
     <div class="col-sm-10">
-        <input type="text" ng-model="report.suspectedCrimes" class="form-control" id="suspectedCrimes"
+        <input type="text" ng-model="report.furtherDetails['SUSPECTED_CRIMES']" class="form-control" id="suspectedCrimes"
                placeholder="Suspected Crime(s)"/>
     </div>
 </div>
 <div class="form-group">
     <label for="suspects" class="col-sm-2 control-label">Person(s) Involved:</label>
     <div class="col-sm-10">
-        <input type="text" ng-model="report.persons" class="form-control" id="suspects"
+        <input type="text" ng-model="report.furtherDetails['SUSPECTS']" class="form-control" id="suspects"
                placeholder="Person(s) Involved"/>
     </div>
 </div>
 <div class="form-group">
     <label for="officers" class="col-sm-2 control-label">Officer(s) Involved:</label>
     <div class="col-sm-10">
-        <input type="text" ng-model="report.officers" class="form-control" id="officers"
+        <input type="text" ng-model="report.furtherDetails['OFFICERS']" class="form-control" id="officers"
                placeholder="Officer(s) Involved"/>
     </div>
 </div>
 <div class="form-group">
     <label for="statement" class="col-sm-2 control-label">Statement(s):</label>
     <div class="col-sm-10">
-        <input type="text" ng-model="report.statement" class="form-control" id="statement"
+        <input type="text" ng-model="report.furtherDetails['STATEMENT']" class="form-control" id="statement"
                placeholder="Statement(s)"/>
     </div>
 </div>
 <div class="form-group">
     <label for="details" class="col-sm-2 control-label">Additional Details:</label>
     <div class="col-sm-10">
-        <input type="text" ng-model="report.details" class="form-control" id="details"
+        <input type="text" ng-model="report.DETAILS" class="form-control" id="details"
                placeholder="Additional Details"/>
     </div>
 </div>

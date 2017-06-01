@@ -2,13 +2,39 @@ package com.pbs.model;
 
 /**
  * Created by Michael on 10/05/2017.
- * An object to hold the basic details of a userName
+ * An object to hold the basic details of a user
  */
 public class User {
-    String userName;
-    String password;
-    String permissions;
+    private String userName;
+    private String password;
+    private String permissions;
+    private String birthday;
+    private String street;
+    private String houseNo;
+    private String postCode;
+    private String town;
+    private int number;
 
+    public User(String userName, String password, String permissions, String birthday, String street, String houseNo, String postCode, String town, int number) {
+        this.userName = userName;
+        this.password = password;
+        this.permissions = permissions;
+        this.birthday = birthday;
+        this.street = street;
+        this.houseNo = houseNo;
+        this.postCode = postCode;
+        this.town = town;
+        this.number = number;
+    }
+
+    /**
+     * This method will be used to create "stub" users, as there is no point
+     * in incorporating personal details just yet
+     *
+     * @param userName
+     * @param password
+     * @param permissions
+     */
     public User(String userName, String password, String permissions) {
         this.userName = userName;
         this.password = password;

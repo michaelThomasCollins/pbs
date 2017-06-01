@@ -9,12 +9,12 @@ import java.util.Date;
  */
 public class NoAction extends Report{
 
-    String suspectedCrimes;
-    String persons;
-    String officers;
-    String statement;
-    String details;
-    String reportType = "no_action";
+    private String suspectedCrimes;
+    private String persons;
+    private String officers;
+    private String statement;
+    private String details;
+    private String reportType = "no_action";
 
     // This constructor has to be implemented due to weird Spring implementation
     public NoAction() { }
@@ -33,34 +33,22 @@ public class NoAction extends Report{
     @Override
     void populateFurtherDetails() {
         furtherDetails.put(Constants.SUSPECTED_CRIMES, getSuspectedCrimes());
-        furtherDetails.put(Constants.DETAILS, details);
-        furtherDetails.put(Constants.OFFICERS, officers);
-        furtherDetails.put(Constants.REPORT_TYPE, reportType);
-        furtherDetails.put(Constants.STATEMENT, statement);
+        furtherDetails.put(Constants.DETAILS, getPersons());
+        furtherDetails.put(Constants.OFFICERS, getOfficers());
+        furtherDetails.put(Constants.REPORT_TYPE, getReportType());
+        furtherDetails.put(Constants.STATEMENT, getStatement());
     }
 
     public String getSuspectedCrimes() {
         return suspectedCrimes;
     }
 
-    public void setSuspectedCrimes(String suspectedCrimes) {
-        this.suspectedCrimes = suspectedCrimes;
-    }
-
     public String getPersons() {
         return persons;
     }
 
-    public void setPersons(String persons) {
-        this.persons = persons;
-    }
-
     public String getOfficers() {
         return officers;
-    }
-
-    public void setOfficers(String longitude) {
-        this.officers = longitude;
     }
 
     public String getStatement() {

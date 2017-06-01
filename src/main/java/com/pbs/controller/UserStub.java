@@ -1,6 +1,5 @@
 package com.pbs.controller;
 
-import com.pbs.model.Report;
 import com.pbs.model.User;
 
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import java.util.Map;
  */
 public class UserStub {
     private static Map<String, User> users = new HashMap<String, User>();
-    private static Integer idIndex = 3;
 
     //populate initial users
     static {
@@ -24,18 +22,26 @@ public class UserStub {
         String uname3="Mr_Man";
         User a = new User(uname1, "Password1", "Officer");
         users.put(uname1, a);
-        User b = new User(uname2, "Arse1", "Verifier");
+        User b = new User(uname2, "Pass123", "Verifier");
         users.put(uname2, b);
         User c = new User(uname3, "Ihatespring1", "Officer");
         users.put(uname3, c);
     }
 
-    //Return a list of all users in the system
+
+    /**
+     * Returns a list of every user currently in the system (typically used for development purposes)
+     * @Return a list of all users in the system
+     */
     public static List<User> list() {
         return new ArrayList<User>(users.values());
     }
 
-    //Return a user
+    /**
+     * Return a single user based on their userName
+     * @param userName
+     * @return User
+     */
     public static User get(String userName) {
         return users.get(userName);
     }

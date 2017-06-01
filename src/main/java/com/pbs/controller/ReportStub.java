@@ -6,23 +6,15 @@ import com.pbs.model.Investigation;
 import com.pbs.model.NoAction;
 import com.pbs.model.Report;
 
-public class ReportStub {
-    private static Map<Integer, NoAction> noActionReports = new HashMap<Integer, NoAction>();
-    private static Map<Integer, Investigation> investigationReports = new HashMap<Integer, Investigation>();
-    private static Map<Integer, Investigation> interventionReports = new HashMap<Integer, Investigation>();
-    private static Map<Integer, Investigation> inMotionReports = new HashMap<Integer, Investigation>();
+class ReportStub {
 
     private static Map<Integer, Report> reportMap = new HashMap<Integer, Report>();
 
-
-//    private static Map<Integer, NoAction> noActionReports = new HashMap<Integer, NoAction>();
-//    private static Map<Integer, NoAction> noActionReports = new HashMap<Integer, NoAction>();
-
     private static Integer idIndex = 5;
 
-    //populate initial STUB noActionReports
+    //populate initial STUB for mocked reports
     static {
-//        NoAction Reports
+        // NoAction Reports
         NoAction a = new NoAction(1, "First Report", "02/06/2016", 200, "arse-on", "Frank Duffy", "Oof", "It Wasn't me", "It was him", "Yes");
         reportMap.put(1, a);
         NoAction b = new NoAction(2, "Second Report", "01/02/2013", 80, "murder", "Michael Collins", "Thud", "I'll Kill Again", "He's got a knife!", "No");
@@ -30,7 +22,7 @@ public class ReportStub {
         NoAction c = new NoAction(3, "Third Report", "11/03/2007", 50, "robbery", "James Johnson", "Tiny", "I would've gotten away with it if it wasn't for you pesky kids!", "No scooby snacks", "Yes");
         reportMap.put(3, c);
 
-//        Investigation Reports
+        // Investigation Reports
         Investigation d = new Investigation(4, "Invest 1", "02/02/02", 201, "Stabbing", "Mr_Stab", "My Mum", "Captain Greg", "That's not a knife",
                 "Yes it is", "03/03/03", "Yes");
         reportMap.put(4, d);
@@ -39,9 +31,7 @@ public class ReportStub {
         reportMap.put(5, e);
     }
 
-    public static List<Report> list(String searchData) {
-        // TODO Merge all lists into one, in order to return the correct values
-        // TODO Also only return the queried values
+    static List<Report> list(String searchData) {
         String[] searchCriteria = searchData.split(";");
         // Giving Search criteria default values so that they do not throw a NullPointerException
         int reportId = -1;
@@ -59,7 +49,7 @@ public class ReportStub {
             reportName = searchCriteria[3];
         } catch (NumberFormatException e) {
             // An exception has occurred when trying to parse the search information (I will now detail this message to the console)
-            System.out.println("Error:> "+e.getMessage());
+            System.out.println("Error:> " + e.getMessage());
         }
 
 
@@ -70,36 +60,36 @@ public class ReportStub {
             if (report.getId() == reportId) {
                 selectedReports.add(report);
             }
-            if(report.getReportDate().equals(reportDate)){
+            if (report.getReportDate().equals(reportDate)) {
                 selectedReports.add(report);
             }
-            if(report.getOfficerId().equals(officerId)){
+            if (report.getOfficerId().equals(officerId)) {
                 selectedReports.add(report);
             }
-            if(report.getReportName().equals(reportName)){
+            if (report.getReportName().equals(reportName)) {
                 selectedReports.add(report);
             }
         }
         return new ArrayList<Report>(selectedReports);
     }
 
-    public static Report create(Report report) {
+    static Report createReport(Report report) {
         idIndex = idIndex + 1;
         report.setId(idIndex);
         reportMap.put(idIndex, report);
         return report;
     }
 
-    public static Report getReport(Integer id) {
+    static Report getReport(Integer id) {
         return reportMap.get(id);
     }
 
-    public static Report updateReport(Integer id, Report report) {
+    static Report updateReport(Integer id, Report report) {
         reportMap.put(id, report);
         return report;
     }
 
-    public static Report deleteNoAction(Integer id) {
+    static Report deleteReport(Integer id) {
         return reportMap.remove(id);
     }
 }
