@@ -1,5 +1,8 @@
 angular.module('app.controllers', []).controller('ReportViewController', function ($scope, $state, $stateParams, popupService, $window, $filter, $rootScope, Report) {
 
+    /**
+     * Returns a report that is loaded from memory
+     */
     $scope.getReport = function () {
         $scope.report = Report.get({id: $stateParams.id});
         console.log("Report loaded: " + $scope.report);
@@ -8,11 +11,18 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
     // Call this method on controller startup so that we have the desired report to be viewed
     $scope.getReport();
 
+    /**
+     * Deletes a report based on ID
+     * @param report
+     */
     $scope.deleteReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
         if (sessionStorage.getItem('permissions') == "Officer") {
             if (popupService.showPopup('Really delete this?')) {
                 report.$delete(function () {
                     $state.go('reports');
+                }, function (error) {
+                    console.log('Error:> ' + error); // On error alert the user that the function never executed properly
+                    alert('Error Deleting Report');
                 });
             }
         } else {
@@ -20,11 +30,18 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
         }
     };
 
+    /**
+     * Allows a verifier to confirm a report has been verified
+     * @param report
+     */
     $scope.verifyReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
         if (sessionStorage.getItem('permissions') == "Verifier") {
             if (popupService.showPopup('Are you sure?')) {
                 report.isVerified = "Yes";
                 $scope.report.$update(function () {
+                }, function (error) {
+                    console.log('Error:> ' + error); // On error alert the user that the function never executed properly
+                    alert('Error Updating Report');
                 });
             }
         } else {
@@ -32,11 +49,18 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
         }
     };
 
+    /**
+     * Allows a user to deny a report
+     * @param report
+     */
     $scope.denyReport = function (report) { // Delete a Report. Issues a DELETE to /api/v1/reports/:id
         if (sessionStorage.getItem('permissions') == "Verifier") {
             if (popupService.showPopup('Are you sure?')) {
                 report.isVerified = "No";
                 $scope.report.$update(function () {
+                }, function (error) {
+                    console.log('Error:> ' + error); // On error alert the user that the function never executed properly
+                    alert('Error Updating Report');
                 });
             }
         } else {
@@ -52,10 +76,16 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
 }).controller('ReportCreateController', function ($scope, $state, $stateParams, Report) {
     $scope.report = new Report();  //create new report instance. Properties will be set via ng-model on UI
 
-    $scope.addReport = function () { //create a new report. Issues a POST to /api/v1/reports
-        $scope.report.$newReport({type: sessionStorage.newReportType}, function(response){
+    /**
+     * create a new report. Issues a POST to /api/v1/reports
+     */
+    $scope.addReport = function () {
+        $scope.report.$newReport({type: sessionStorage.getItem('newReportType')}, function(response){
             $state.go('home'); // on success go back to the home page
             console.log('success', response);
+        }, function (error) {
+            console.log('Error:> ' + error); // On error alert the user that the function never executed properly
+            alert('Error Creating Report');
         });
 
     };
@@ -65,17 +95,20 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
     };
 
     $scope.getReportType = function () {
-        return 'views/_' + sessionStorage.newReportType + '_form.html';
+        return 'views/_' + sessionStorage.getItem('newReportType') + '_form.html';
     };
 }).controller('ReportEditController', function ($scope, $state, $stateParams, $rootScope, Report) {
     $scope.report = new Report();  //create new report instance. Properties will be set via ng-model on UI
 
-    $scope.updateReport = function () { //Update the edited report. Issues a PUT to /api/v1/reports/:id
+    /**
+     * Update the edited report. Issues a PUT to /api/v1/reports/:id
+     */
+    $scope.updateReport = function () {
         $scope.report.$update({type: $scope.report.reportType}, function (response) {
             $state.go('reports'); // on success go back to the home page
             console.log('success', response);
         }, function (error) {
-            console.log('Error:> ' + error);
+            console.log('Error:> ' + error); // On error alert the user that the function never executed properly
             alert('Error Updating Report');
         });
     };
@@ -88,6 +121,10 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
         return sessionStorage.getItem('permissions')
     };
 
+    /**
+     * Loads the users desired report
+     * @return report
+     */
     $scope.loadReport = function () { //Issues a GET request to /api/v1/reports/:id to get a report to update
         $scope.report = Report.get({id: $stateParams.id});
     };
@@ -95,21 +132,24 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
     $scope.loadReport(); // Load a report which can be edited on UI
 }).controller('ChooseReportTypeController', function ($scope, $state) {
 
+    /**
+     * Gets the users chosen report type from the UI then opens it
+     */
     $scope.chooseReport = function () {
         //TODO Could improve this code here, see editShipwreck({id:shipwreck.id}) formatting
         var x = document.getElementById("option");
         var choice = x.options[x.selectedIndex].text;
         if (choice == "No Action") {
-            sessionStorage.newReportType = ('no_action');
+            sessionStorage.setItem('newReportType','no_action');
             $state.go('newReport');
         } else if (choice == "Investigation") {
-            sessionStorage.newReportType = ('investigation');
+            sessionStorage.setItem('newReportType','investigation');
             $state.go('newReport');
         } else if (choice == "Intervention") {
-            sessionStorage.newReportType = ('intervention');
+            sessionStorage.setItem('newReportType','intervention');
             $state.go('newReport');
         } else if (choice == "In Motion") {
-            sessionStorage.newReportType = ('in_motion');
+            sessionStorage.setItem('newReportType','in_motion');
             $state.go('newReport');
         } else {
             alert("Please select an option");
@@ -119,18 +159,25 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
 }).controller('ReportSearchController', function ($scope, $state, $stateParams, Search, Report) {
     $scope.report = new Report();
 
+    /**
+     * Searches through the reports to find the ones which match the given criteria on UI
+     */
     $scope.searchReports = function () {
+        // Get details from UI
         var reportId = $scope.Report.id;
         var reportDate = $scope.Report.reportDate;
         var officerId = $scope.Report.officerId;
         var reportName = $scope.Report.reportName;
 
-        sessionStorage.searchData = reportId + ';' + reportDate + ';' + officerId + ';' + reportName;
+        sessionStorage.setItem('searchData',reportId + ';' + reportDate + ';' + officerId + ';' + reportName);
 
         $state.go('reports');
     };
-    $scope.reports = Search.query({searchData: sessionStorage.searchData}); //fetch all reports. Issues a GET to /api/vi/reports
+    $scope.reports = Search.query({searchData: sessionStorage.getItem('searchData')}); //fetch all reports. Issues a GET to /api/vi/reports
 }).controller('LoginController', function ($scope, $state, $stateParams, $rootScope, User) {
+    /**
+     * Confirms the user details on the login page
+     */
     $scope.verifyUser = function () { //Issues a GET request to /api/v1/users/:id to get a user to verify
         var userName = $scope.User.userName;
         var password = $scope.User.password;
@@ -155,6 +202,9 @@ angular.module('app.controllers', []).controller('ReportViewController', functio
         return sessionStorage.getItem('userName')
     };
 
+    /**
+     * Clears all current user data and returns user to the login page
+     */
     $scope.logOut = function () {
         sessionStorage.clear();
         $state.go('login')

@@ -24,10 +24,13 @@ public abstract class Report {
     }
 
 	/**
-	 *
+	 * This is an abstract method that is used by each child class
+     * It allows child classes to populate the details specific to their type, and in a format that is readable
+     * on the front end
 	 */
 	abstract void populateFurtherDetails();
 
+	//This method is needed to load required data, it is used but is abstracted
 	public Map<String, String> getFurtherDetails() {
 		return furtherDetails;
 	}

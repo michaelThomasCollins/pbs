@@ -31,7 +31,7 @@ public class PoliceBookingSystem {
     /**
      * This method returns a report based on the report ID.
      * @param id
-     * @return
+     * @return the report that matches
      */
     @RequestMapping(value = "reports/{id}", method = RequestMethod.GET)
     public Report get(@PathVariable Integer id) {

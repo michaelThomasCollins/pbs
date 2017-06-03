@@ -9,7 +9,8 @@
           <td>{{report.reportId}}</td>
           <td>{{report.reportType}}</td>
           <td>
-              <a class="btn btn-primary" ui-sref="viewReport({reportType:report.reportType, id:report.id})">View</a>
+              <a class="btn btn-primary" title="Select this to see full details of your report"
+                 ui-sref="viewReport({reportType:report.reportType, id:report.id})">View</a>
           </td>
       </tr>
   </table>

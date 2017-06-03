@@ -106,7 +106,8 @@ class ReportStub {
             report.setId(idIndex);
             reportMap.put(idIndex, report);
         } catch(NullPointerException e){
-
+            // There is a chance that the user could somehow submit a null report or the reportMap could be null
+            System.out.println("Error:> " + e.getMessage());
         }
         return report;
     }

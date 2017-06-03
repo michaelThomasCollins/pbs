@@ -10,12 +10,13 @@
         <div class="col-md-12 text-center">
             <div class="name">
                 <label><b>Username</b></label>
-                <input type="text" name="uname" ng-value="getUserName()" disabled>
+                <input type="text" name="uname" title="If this is not your name, please log out and report" ng-value="getUserName()" disabled>
             </div>
 
             <div class="row">
-                <p><a class="btn btn-default" role="button" href="#/reportSearch">Search For Report</a><p>
-                <p><a class="btn btn-default" role="button" ng-show="getPermissions() === 'Officer'" href="#/chooseReportType">Create Report</a><p>
+                <p><a class="btn btn-default" role="button" title="Used to find already created reports" href="#/reportSearch">Search For Report</a><p>
+                <p><a class="btn btn-default" role="button" title="Select this if you want to make a completely new report"
+                      ng-show="getPermissions() === 'Officer'" href="#/chooseReportType">Create Report</a><p>
             </div>
             <p><a class="btn btn-default" role="button" ng-click="logOut()">Log out</a><p>
         </div>

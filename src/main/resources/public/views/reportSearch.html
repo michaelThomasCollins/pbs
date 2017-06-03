@@ -9,7 +9,7 @@
     <div class="reportId">
         <label for="reportId"><b>Report Id:</b></label>
         <br>
-        <input type="number" ng-model="Report.id" name="reportId" id="reportId">
+        <input type="number" ng-model="Report.id" title="Please enter a number" name="reportId" id="reportId">
     </div>
     <br>
 
@@ -23,7 +23,7 @@
     <div class="officerId">
         <label for="officerId"><b>Officer ID:</b></label>
         <br>
-        <input type="number" ng-model="Report.officerId" name="officerId" id="officerId">
+        <input type="number" ng-model="Report.officerId" title="Please enter a number" name="officerId" id="officerId">
     </div>
     <br>
 
@@ -35,7 +35,8 @@
     <br>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <input type="submit" class="btn btn-primary" value="Search"/>
+            <input type="submit" class="btn btn-primary"
+                   title="Select this to search for values based on your searching criteria" value="Search"/>
         </div>
     </div>
 </form>
